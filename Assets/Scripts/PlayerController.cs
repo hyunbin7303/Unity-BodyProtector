@@ -1,15 +1,28 @@
 ﻿
 using UnityEngine;
 using UnityEngine.Networking;
+
 public class PlayerController : NetworkBehaviour
 {
+
+    //Another control is the [Command] attribute.
+    //The [Command] attribute indicates that the following function will be called by the Client,
+   // but will be run on the Server.
+
+
     public GameObject capsule;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+
+
+
+    public Texture2D menuIcon;
+
     void Start () {
         
 
     }
+
 	// Update is called once per frame
 	void Update () {
         /*
@@ -20,17 +33,19 @@ public class PlayerController : NetworkBehaviour
         {
             return;
         }
+
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+
+        transform.Rotate(0, x, 0);
+        transform.Translate(0, 0, z);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("PRESSED SPACE - [FIRE METHOD]");
-            Fire();
+            CmdFire();
         }
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
-	}
+    }
 
     // This method is used for assigning color to the main character that player is playing.
     public override void OnStartLocalPlayer()
@@ -43,7 +58,8 @@ public class PlayerController : NetworkBehaviour
      * Description : Used for firing bullet.
      * Currently working on right now.
      */
-    void Fire()
+     [Command]
+    void CmdFire()
     {
         // Create the Bullet from the Bullet Prefab
         var bullet = (GameObject)Instantiate(
