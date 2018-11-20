@@ -25,16 +25,24 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("PRESSED SPACE - [FIRE METHOD]");
             Fire();
         }
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
 	}
+
+    // This method is used for assigning color to the main character that player is playing.
     public override void OnStartLocalPlayer()
     {
         capsule.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
+
+    /* Fire Method 
+     * Description : Used for firing bullet.
+     * Currently working on right now.
+     */
     void Fire()
     {
         // Create the Bullet from the Bullet Prefab
