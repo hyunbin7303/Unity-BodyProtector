@@ -9,7 +9,7 @@ public class Grid : MonoBehaviour
 
     public Vector2 gridWorldSize;
     public float nodeRadius;
-    public float Distance;
+    public float DistanceBetweenNodes;
 
     Node[,] grid;
     public List<Node> FinalPath;
@@ -43,9 +43,78 @@ public class Grid : MonoBehaviour
                     wall = false;
                 }
 
-                grid[y, x] = new Node(wall, worldPoint, x, y);
+                grid[x, y] = new Node(wall, worldPoint, x, y);
             }
         }
+    }
+
+
+    public Node NodeFromWorldPosition(Vector3 worldPosition)
+    {
+        float xpoint = ((worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x);
+        float ypoint = ((worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y);
+
+        xpoint = Mathf.Clamp01(xpoint);
+        ypoint = Mathf.Clamp01(ypoint);
+
+        int x = Mathf.RoundToInt((gridSizeX - 1) * xpoint);
+        int y = Mathf.RoundToInt((gridSizeY - 1) * ypoint);
+
+        return grid[x, y];
+    }
+
+
+    public List<Node> GetNeighboringNodes(Node node)
+    {
+        List<Node> neighboringNodes = new List<Node>();
+        int xCheck;
+        int yCheck;
+
+        // Right side
+        xCheck = node.gridX + 1;
+        yCheck = node.gridY;
+        if (xCheck >= 0 && xCheck < gridSizeX)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighboringNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        // Left side
+        xCheck = node.gridX - 1;
+        yCheck = node.gridY;
+        if (xCheck >= 0 && xCheck < gridSizeX)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighboringNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        // Top side
+        xCheck = node.gridX;
+        yCheck = node.gridY + 1;
+        if (xCheck >= 0 && xCheck < gridSizeX)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighboringNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        // Bottom side
+        xCheck = node.gridX;
+        yCheck = node.gridY - 1;
+        if (xCheck >= 0 && xCheck < gridSizeX)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighboringNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        return neighboringNodes;
     }
 
 
@@ -74,9 +143,8 @@ public class Grid : MonoBehaviour
                     }
                 }
 
-                Gizmos.DrawCube(node.Position, Vector3.one * (nodeDiameter - Distance));
+                Gizmos.DrawCube(node.Position, Vector3.one * (nodeDiameter - DistanceBetweenNodes));
             }
-
         }
     }
 }
