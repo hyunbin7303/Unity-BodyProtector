@@ -13,16 +13,14 @@ public class PlayerController : NetworkBehaviour
     public GameObject capsule;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-
-
+    //   public Rigidbody rb;
 
     public Texture2D menuIcon;
 
     void Start () {
-        
 
+  //      rb = GetComponent<Rigidbody>();
     }
-
 	// Update is called once per frame
 	void Update () {
         /*
@@ -45,6 +43,11 @@ public class PlayerController : NetworkBehaviour
             Debug.Log("PRESSED SPACE - [FIRE METHOD]");
             CmdFire();
         }
+        if(Input.GetKey("p"))
+        {
+            Debug.Log("PRESSED P - [Move Camera position to main.]");
+        }
+
     }
 
     // This method is used for assigning color to the main character that player is playing.

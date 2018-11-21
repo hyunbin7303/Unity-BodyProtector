@@ -17,10 +17,18 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+       
 
         // Store position of this object
         Vector3 pos = transform.position;
+        if (Input.GetKey("p"))
+        {
+            Debug.Log("PRESSED P - [Move Camera position to main.]");
+            pos.x = 0.0f;
+            pos.y = 20.0f;
+            pos.z = -10f;
+        }
+
         if ( Input.mousePosition.y >= Screen.height - panBoarderThickness)
         {
             Debug.Log("[CAMERA CONTROLLER] w key or mouse up pressed");
