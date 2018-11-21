@@ -43,10 +43,7 @@ public class PlayerController : NetworkBehaviour
             Debug.Log("PRESSED SPACE - [FIRE METHOD]");
             CmdFire();
         }
-        if(Input.GetKey("p"))
-        {
-            Debug.Log("PRESSED P - [Move Camera position to main.]");
-        }
+
 
     }
 
