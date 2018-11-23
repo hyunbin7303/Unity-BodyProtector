@@ -17,7 +17,12 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+
+        Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+        if (!screenRect.Contains(Input.mousePosition)) {
+            return;
+        }
+
 
         // Store position of this object
         Vector3 pos = transform.position;
