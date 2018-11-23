@@ -3,17 +3,24 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    // The maximum HP of the character, enemy, etc.
+    public int maxHitPoints;
+    public int currentHitPoints { get; private set; }
+
     public float lookRadius = 10f;
 
-    Transform target;
-    NavMeshAgent agent;
+    protected NavMeshAgent navMeshAgent;
 
+    private Transform target;
 
-    // Use this for initialization
-    void Start()
+    void OnEnable()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
     {
         target = PlayerManager.instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -22,9 +29,9 @@ public class EnemyController : MonoBehaviour
 
         if (distance <= lookRadius)
         {
-            agent.SetDestination(target.position);
+            navMeshAgent.SetDestination(target.position);
 
-            if (distance <= agent.stoppingDistance)
+            if (distance <= navMeshAgent.stoppingDistance)
             {
                 // Attack the target
 
