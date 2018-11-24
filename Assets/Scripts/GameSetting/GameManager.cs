@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;
     public BoardManager boardScript;
     public SoundManager soundScript;
-    private int gameLevel = 1;
     private void Awake()
     {
         if(instance == null)

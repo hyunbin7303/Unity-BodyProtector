@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 114520509567002796}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,8 +499,8 @@ MonoBehaviour:
     Description: 
     cooldown: 0
   - icon: {fileID: 0}
-    ID: 0
-    skillname: 
+    ID: 3
+    skillname: HAHAHA
     Description: 
     cooldown: 0
   - icon: {fileID: 0}
@@ -524,6 +524,16 @@ MonoBehaviour:
     skillname: 
     Description: 
     cooldown: 0
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
+  barsBackgroundTexture: {fileID: 2800000, guid: cbfa7a00299e1b14ebc34e46d5e08268,
+    type: 3}
+  bulletPrefab: {fileID: 1562989709728344, guid: cc3fe7fbc8f783049afd97500b4f30ce,
+    type: 2}
+  bulletSpawn: {fileID: 4298903636668370}
 --- !u!114 &114557107855272572
 MonoBehaviour:
   m_ObjectHideFlags: 1
