@@ -490,19 +490,19 @@ MonoBehaviour:
   allSkills:
   - icon: {fileID: 0}
     ID: 1
-    skillname: Austin
-    Description: 
-    cooldown: 0
+    skillname: Get Vitamin
+    Description: This skill is used for getting health.
+    cooldown: 5
   - icon: {fileID: 0}
     ID: 2
-    skillname: kevin
-    Description: 
-    cooldown: 0
+    skillname: Get Anti
+    Description: Getting Anti protection.
+    cooldown: 10
   - icon: {fileID: 0}
     ID: 3
-    skillname: HAHAHA
-    Description: 
-    cooldown: 0
+    skillname: Super Ultra
+    Description: This skill enables enemy unmovable for few seconds.
+    cooldown: 20
   - icon: {fileID: 0}
     ID: 0
     skillname: 
