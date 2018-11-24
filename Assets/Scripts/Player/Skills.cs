@@ -19,6 +19,14 @@ public class Skills : MonoBehaviour {
         PlayerSkills[0].skillname = allSkills[0].skillname;
         PlayerSkills[0].Description = allSkills[0].Description;
 
+
+        PlayerSkills[1].ID = allSkills[1].ID;
+        PlayerSkills[1].icon = allSkills[1].icon;
+        PlayerSkills[1].skillname = allSkills[1].skillname;
+        PlayerSkills[1].Description = allSkills[1].Description;
+
+
+
     }
 
 
@@ -37,7 +45,7 @@ public class Skills : MonoBehaviour {
         if(IsSkill2On) 
         {
             Debug.Log("SKILL 2 is selected");
-            UseSpell(PlayerSkills[0].ID);
+            UseSpell(PlayerSkills[1].ID);
         }
     }
     private void OnGUI()

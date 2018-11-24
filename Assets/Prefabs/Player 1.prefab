@@ -487,8 +487,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f15522354977f44b7fbfb167fb9de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureToDisplay: {fileID: 2800000, guid: d61276d76b2ee8643911990f5318f914, type: 3}
-  cooldown: 0
+  allSkills:
+  - icon: {fileID: 0}
+    ID: 1
+    skillname: Austin
+    Description: 
+    cooldown: 0
+  - icon: {fileID: 0}
+    ID: 2
+    skillname: kevin
+    Description: 
+    cooldown: 0
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
+  PlayerSkills:
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
+  - icon: {fileID: 0}
+    ID: 0
+    skillname: 
+    Description: 
+    cooldown: 0
 --- !u!114 &114557107855272572
 MonoBehaviour:
   m_ObjectHideFlags: 1
