@@ -5,9 +5,6 @@ using UnityEngine.Networking;
 public class EnemyController : NetworkBehaviour
 {
     [SyncVar]
-    public float speed = 2.0f;
-
-    [SyncVar]
     public float lookRadius = 10.0f;
 
     //
@@ -44,8 +41,6 @@ public class EnemyController : NetworkBehaviour
 
         // Has the player been sighted?
         playerInSight = false;
-
-        navMeshAgent.speed = speed;
     }
 
     void Start()
