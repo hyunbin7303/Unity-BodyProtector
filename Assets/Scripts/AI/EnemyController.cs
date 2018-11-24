@@ -4,20 +4,48 @@ using UnityEngine.Networking;
 
 public class EnemyController : NetworkBehaviour
 {
-    // The maximum HP of the character, enemy, etc.
     [SyncVar]
-    public int maxHitPoints;
-    public int currentHitPoints { get; private set; }
+    public float speed = 2.0f;
 
-    public float lookRadius = 10f;
+    [SyncVar]
+    public float lookRadius = 10.0f;
+
+    //
+    // The health of the enemy
+    [SyncVar]
+    public float maxHitPoints = 100.0f;
+    [SyncVar]
+    public float currentHitPoints = 100.0f;
+
+    [SyncVar]
+    public bool playerInSight;
+
+    // Where the player character is in relation to NPC
+    public Vector3 direction;
+    // How far away is the player from the NPC
+    public float distance = 0.0f;
+    // What is the angle between the PC and NPC
+    public float angle = 0.0f;
+    // what is the field of view for our NPC?
+    public float fieldOfViewAngle = 360.0f;
+    // calculate the angle between PC and NPC
+    public float calculatedAngle;
 
     protected NavMeshAgent navMeshAgent;
-
+    private SphereCollider col;
     private Transform target;
 
-    void OnEnable()
+    void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        // get reference to nav mesh agent
+        this.navMeshAgent = GetComponent<NavMeshAgent>();
+        // reference to the sphere collider
+        this.col = GetComponent<SphereCollider>() as SphereCollider;
+
+        // Has the player been sighted?
+        playerInSight = false;
+
+        navMeshAgent.speed = speed;
     }
 
     void Start()
@@ -26,8 +54,12 @@ public class EnemyController : NetworkBehaviour
 
     void Update()
     {
+        if (!isServer)
+            return;
+
         if (NetworkServer.active)
         {
+            // Search for any players in the map
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
             if (players != null)
@@ -40,23 +72,35 @@ public class EnemyController : NetworkBehaviour
 
     void FixedUpdate()
     {
+        if (!isServer)
+            return;
+
         if (target != null)
         {
-            float distance = Vector3.Distance(target.position, transform.position);
+            // Nearest target found, apply the distance calculations
+            // on the server and 
+            CmdUpdateNetwork();
+        }
+    }
 
-            if (distance <= lookRadius)
+    [Command]
+    void CmdUpdateNetwork()
+    {
+        direction = target.position - transform.position;
+        distance = Vector3.Distance(target.position, transform.position);
+
+        if (distance <= lookRadius)
+        {
+            // Move towards the target (player)
+            navMeshAgent.SetDestination(target.position);
+
+            // If the enemy is near to the player...
+            if (distance <= navMeshAgent.stoppingDistance)
             {
-                // Move towards the target (player)
-                navMeshAgent.SetDestination(target.position);
+                // Attack the target
 
-                // If the enemy is near to the player...
-                if (distance <= navMeshAgent.stoppingDistance)
-                {
-                    // Attack the target
-
-                    // Face the target
-                    FaceTarget();
-                }
+                // Face the target
+                FaceTarget();
             }
         }
     }

@@ -40,11 +40,12 @@ GameObject:
   - component: {fileID: 114533958983929024}
   - component: {fileID: 195170941158647020}
   - component: {fileID: 136001255918640588}
+  - component: {fileID: 135674801226092656}
   - component: {fileID: 54905158844880350}
   - component: {fileID: 114977638168944170}
   m_Layer: 0
   m_Name: Enemy2
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491045040034600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -185,7 +186,7 @@ MonoBehaviour:
     i14: 43
     i15: 202
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114977638168944170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,8 +198,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5f8685d7145ff46b58e720be8155fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 0
+  speed: 0
   lookRadius: 5
+  maxHitPoints: 0
+  currentHitPoints: 100
+  playerInSight: 0
+  direction: {x: 0, y: 0, z: 0}
+  distance: 0
+  angle: 0
+  fieldOfViewAngle: 360
+  calculatedAngle: 0
+--- !u!135 &135674801226092656
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491045040034600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &136001255918640588
 CapsuleCollider:
   m_ObjectHideFlags: 1
