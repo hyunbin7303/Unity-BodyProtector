@@ -159,7 +159,7 @@ public class Skills : NetworkBehaviour
         // Add velocity to the bullet
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
         // Destroy the bullet after 2 seconds
-        Destroy(bullet, 4.0f);
+        Destroy(bullet, 5.0f);
         NetworkServer.Spawn(bullet);
     }
 

@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 42164d91953670a40a90d36d70c1a9ca
   - enabled: 0
-    path: Assets/RTS_Camera/Demo/Demo_Scene.unity
-    guid: 5979c42854751894c9b4adbab4221cd4
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/ai_MainScene.unity
+    guid: e89707a4ad3b271439a99d08ab06c1ee
   m_configObjects: {}

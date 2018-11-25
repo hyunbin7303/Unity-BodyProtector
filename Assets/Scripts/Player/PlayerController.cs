@@ -38,7 +38,14 @@ public class PlayerController : NetworkBehaviour
         capsule.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 
-
-
-
+    public void OnTriggerEnter(Collider other)
+    {
+        if(isLocalPlayer)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                Debug.Log("Detect enemy collision");
+            }
+        }
+    }
 }
