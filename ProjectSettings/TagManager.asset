@@ -6,6 +6,9 @@ TagManager:
   tags:
   - NPC
   - Enemy
+  - menuScreen
+  - HelpScreen
+  - FriendViewScreen
   layers:
   - Default
   - TransparentFX
