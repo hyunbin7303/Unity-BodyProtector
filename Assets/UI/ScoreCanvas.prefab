@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 223615959576891270}
   - component: {fileID: 114122089469575146}
   - component: {fileID: 114439520053411720}
-  - component: {fileID: 114910576552599314}
   m_Layer: 5
   m_Name: ScoreCanvas
   m_TagString: Untagged
@@ -222,18 +221,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114910576552599314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1410283126777340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24daf057f22669f43acbe6208d3acbf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  killCount: {fileID: 114584841289557434}
 --- !u!114 &114959989218610758
 MonoBehaviour:
   m_ObjectHideFlags: 1

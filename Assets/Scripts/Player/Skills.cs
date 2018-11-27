@@ -12,6 +12,7 @@ public class Skills : NetworkBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
+    public ScoreCanvasControl scoreCanvas;
 
     private bool IsSkill1On;
     private bool IsSkill2On;
@@ -21,6 +22,8 @@ public class Skills : NetworkBehaviour
     private bool IsAttackOn;
     private void Start()
     {
+        scoreCanvas.Show();
+
         for (int i = 0; i < 3; i++)
         {
             PlayerSkills[i].ID = allSkills[i].ID;

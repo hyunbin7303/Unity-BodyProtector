@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     public GameLevel currentLevel;
 
-
     private void Awake()
     {
         if (instance == null)

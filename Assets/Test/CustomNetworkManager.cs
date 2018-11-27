@@ -11,8 +11,7 @@ public class CustomNetworkManager : NetworkManager
 {
     public override void OnServerConnect(NetworkConnection conn)
     {
-      //  GameManager.instance.IsGameStart = true;
-
+        //  GameManager.instance.IsGameStart = true;
         Debug.Log("OnPlayerConnected");
     }
 

@@ -8,6 +8,7 @@ public class Health : NetworkBehaviour
     [SyncVar(hook = "OnChangeHealth")]
     public int currentHealth = maxHealth;
     public RectTransform healthBar;
+
     public const int maxHealth = 100;
     public void TakeDamage(int amount)
     {

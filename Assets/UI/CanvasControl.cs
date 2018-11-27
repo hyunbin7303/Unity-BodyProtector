@@ -28,7 +28,7 @@ public class CanvasControl
             return;
 
         m_Canvas = (Canvas)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        GameObject.DontDestroyOnLoad(m_Canvas.gameObject);
+        //GameObject.DontDestroyOnLoad(m_Canvas.gameObject);
     }
 
     /// <summary>
