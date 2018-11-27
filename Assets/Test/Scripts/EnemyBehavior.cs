@@ -10,7 +10,7 @@ public class EnemyBehavior : MonoBehaviour, IMessageReceiver
     void OnEnable()
     {
         controller = GetComponent<EnemyController>();
-        target = PlayerManager.instance.player.transform;
+        //target = PlayerManager.instance.player.transform;
     }
 
 

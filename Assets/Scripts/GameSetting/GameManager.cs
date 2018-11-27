@@ -1,38 +1,89 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public enum GameLevel
+    {
+        LOBBY,
+        INGAME,
+        ENDSCREEN
+    }
 
     public static GameManager instance = null;
     public BoardManager boardScript;
     public SoundManager soundScript;
+    public EnemyManager enemyScript;
+    public PlayerManager playScript;
+    public bool IsGameStart;
+    public bool IsAllPlayerDone;
+
+    public GameLevel currentLevel;
+
+
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        }
 
-        else if(instance != this)
+            IsGameStart = false;
+            IsAllPlayerDone = false;
+            currentLevel = GameLevel.LOBBY;
+            playScript.accounts = new List<Varlab.Database.Domain.Account>();
+
+            Debug.Log("[Loader.cs]: CallOrder(2) - Created the GameManager instance");
+        }
+        else if (instance != this)
         {
+            Debug.Log("[Loader.cs]: CallOrder(3) - Destroying the GameManager!");
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        boardScript = GetComponent<BoardManager>();
         InitGame();
+    }
+
+    public void setGamePlayerDone(bool OnOFF)
+    {
+        IsAllPlayerDone = OnOFF;
     }
     void InitGame()
     {
-        //Call the SetupScene function of the BoardManager script, pass it current level number.
-        //boardScript.SetupScene(level);
+    }
+    // Update is called once per frame
+    void Update()
+    {
+
+
+    }
+    private void LateUpdate()
+    {
+        if (IsGameStart)
+        {
+            if (playScript != null)
+            {
+                if (playScript.accounts != null)
+                {
+                    var count = playScript.accounts.Count(x => x.IsOnline);
+                    if (count == 0)
+                    {
+                        IsAllPlayerDone = true;
+                    }
+                }
+            }
+            if (instance.IsAllPlayerDone && instance.currentLevel != GameLevel.ENDSCREEN)
+            {
+                instance.IsAllPlayerDone = false;
+                instance.currentLevel = GameLevel.ENDSCREEN;
+                NetworkManager.singleton.ServerChangeScene("EndScene");
+            }
+        }
     }
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 }
+
+

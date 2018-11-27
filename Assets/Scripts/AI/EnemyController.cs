@@ -5,17 +5,10 @@ using UnityEngine.Networking;
 public class EnemyController : NetworkBehaviour
 {
     [SyncVar]
-    public float speed = 2.0f;
-
-    [SyncVar]
     public float lookRadius = 10.0f;
-
-    //
     // The health of the enemy
-    [SyncVar]
-    public float maxHitPoints = 100.0f;
-    [SyncVar]
-    public float currentHitPoints = 100.0f;
+
+    public Health health;
 
     [SyncVar]
     public bool playerInSight;
@@ -41,11 +34,9 @@ public class EnemyController : NetworkBehaviour
         this.navMeshAgent = GetComponent<NavMeshAgent>();
         // reference to the sphere collider
         this.col = GetComponent<SphereCollider>() as SphereCollider;
-
+        health = GetComponent<Health>();
         // Has the player been sighted?
         playerInSight = false;
-
-        navMeshAgent.speed = speed;
     }
 
     void Start()
@@ -61,12 +52,16 @@ public class EnemyController : NetworkBehaviour
         {
             // Search for any players in the map
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
             if (players != null)
             {
                 // Find the nearest target 
                 target = GetNearestTarget(players);
             }
+            if(health.currentHealth <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
         }
     }
 
