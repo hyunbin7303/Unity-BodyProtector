@@ -42,9 +42,5 @@ public class CustomNetworkManager : NetworkManager
         base.OnClientDisconnect(conn);
         Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " lost!");
     }
-    private void Update()
-    {
 
-
-    }
 }

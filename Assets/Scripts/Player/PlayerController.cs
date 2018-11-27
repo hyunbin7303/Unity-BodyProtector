@@ -9,7 +9,9 @@ public class PlayerController : NetworkBehaviour
     //Another control is the [Command] attribute.
     //The [Command] attribute indicates that the following function will be called by the Client,
     // but will be run on the Server.
+    [SyncVar]
     private int Score;
+
     public GameObject capsule;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -38,10 +40,6 @@ public class PlayerController : NetworkBehaviour
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
-
-
-
-
     }
     // This method is used for assigning color to the main character that player is playing.
     public override void OnStartLocalPlayer()
@@ -63,21 +61,32 @@ public class PlayerController : NetworkBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(isLocalPlayer)
+        // Collision detection only happens on the server-side...
+        // Somehow tell the client that their instance died!
+
+        if (isLocalPlayer)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log("Detect enemy collision with character.");
-                health.currentHealth-= 20;
+                health.currentHealth -= 20;
                 Debug.Log("Health value : " + health.currentHealth);
-                if(health.currentHealth <= 0)
+                if (health.currentHealth <= 0)
                 {
                     Debug.Log("GAME PLAYER DIED.");
 
                     GameManager.instance.playScript.SetPlayerOffline(acc);
-                    Destroy(this.gameObject);
+                    CmdPlayerDie();
                 }
             }
         }
+    }
+
+
+    // Tell the server that player has died...
+    [Command]
+    public void CmdPlayerDie()
+    {
+        Destroy(this.gameObject);
     }
 }
