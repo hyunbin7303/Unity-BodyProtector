@@ -10,7 +10,7 @@ namespace Varlab.DataLayer
     /// <summary>
     /// 
     /// </summary>
-    public class DatabaseUtil : IDisposable
+    public class DatabaseUtil
     {
         public static string DB_NAME = "BodyProtector.db";
         public static string CONN = "URI=file:" + Application.dataPath + "/Plugins/" + DB_NAME;
@@ -60,14 +60,14 @@ namespace Varlab.DataLayer
         //    columnFormat = string.Format(columnFormat, columns);
         //}
 
-        public void Dispose()
-        {
-            if (db != null)
-            {
-                db.Close();
-                db.Dispose();
-            }
-        }
+        //public void Dispose()
+        //{
+        //    if (db != null)
+        //    {
+        //        db.Close();
+        //        db.Dispose();
+        //    }
+        //}
 
 
         public static SqliteConnection BuildDbConnectionObj()
