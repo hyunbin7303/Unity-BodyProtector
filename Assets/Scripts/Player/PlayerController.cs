@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using Varlab.Database.Domain;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -45,16 +46,30 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         capsule.GetComponent<MeshRenderer>().material.color = Color.blue;
-        // this.gameObject.GetComponent<>().AccountID = acc.AccountID;
-        Varlab.Database.Domain.Account newPlayer = new Varlab.Database.Domain.Account();
+
+        Account newPlayer = new Account();
         newPlayer.AccountID = GameManager.instance.playScript.accounts.Count + 1;
         newPlayer.Username = "KevAustin" + newPlayer.AccountID;
         newPlayer.PasswordHash = "SOMETHING" + 100 + newPlayer.AccountID;
         newPlayer.Email = newPlayer.Username + "@Conestogac.on.ca";
         newPlayer.IsOnline = true;
 
+        // Check if the Account exists in the database...
+        Account entity = DatabaseManager.instance.accountDAL.GetAccountByID(newPlayer.AccountID);
+        if (entity == null)
+        {
+            // If the account does not exist, this means that a new player record is inserted
+            DatabaseManager.instance.accountDAL.CreateAccount(newPlayer);
+        }
+        else
+        {
+            // Otherwise, we found the account information... save it to this local var
+            newPlayer = entity;
+            newPlayer.IsOnline = true;
+        }
+
         acc = newPlayer;
-        GameManager.instance.playScript.accounts.Add(newPlayer);
+        GameManager.instance.playScript.accounts.Add(acc);
         GameManager.instance.IsGameStart = true;
         Debug.Log("[NetworkManager]: Connection, New Player Added : " + newPlayer.Username);
     }
