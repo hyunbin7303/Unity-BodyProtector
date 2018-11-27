@@ -57,17 +57,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if the game is done, go to final page.
-        // If Both of player die, it goes to the end scene.
-        //if (IsGameStart)
-        //{
-        //    FinishGame();
-        //}
-        //// Check whether all players are gone.
-        //if (IsAllPlayerDone)
-        //{
-        //    NetworkManager.singleton.ServerChangeScene("EndScene");
-        //}
 
 
     }
