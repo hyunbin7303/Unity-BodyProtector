@@ -14,7 +14,7 @@ namespace Varlab.DataLayer
     {
         public static string DB_NAME = "BodyProtector.db";
         public static string CONN = "URI=file:" + Application.dataPath + "/Plugins/" + DB_NAME;
-        private IDbConnection db;
+        //private IDbConnection db;
 
         //public void OpenConnection()
         //{
