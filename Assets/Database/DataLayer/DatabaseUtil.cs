@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-namespace Varlab.Database
+namespace Varlab.DataLayer
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DatabaseWrapper : IDisposable
+    public class DatabaseUtil : IDisposable
     {
         public static string DB_NAME = "bodyprotector.db";
         public static string CONN = "URI=file:" + Application.dataPath + "/Database/Source/" + DB_NAME;
@@ -22,7 +22,7 @@ namespace Varlab.Database
         {
             try
             {
-                db = new SqliteConnection(CONN);
+                SqliteConnection db = new SqliteConnection(CONN);
                 // Open connection to database
                 db.Open();
             }
@@ -69,6 +69,65 @@ namespace Varlab.Database
                 db.Close();
                 db.Dispose();
             }
+        }
+
+
+        public static SqliteConnection BuildDbConnectionObj()
+        {
+            return new SqliteConnection(CONN);
+        }
+
+        public static string FormatValue(string val, Type type)
+        {
+            string result = val;
+            string typeName = type.Name;
+
+            switch (typeName.ToLower())
+            {
+                case "string":
+                case "String":
+                    result = "'" + val + "'";
+                    break;
+                case "int":
+                case "int32":
+                case "uint32":
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        public static string BuildValues(string[] args)
+        {
+            string result = "";
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                result += args[i];
+                if (i == args.Length - 1) { break; }
+                if (i != args.Length - 1)
+                {
+                    result += ",";
+                }
+            }
+
+            return result;
+        }
+
+        public static int ToInt32(IDataReader reader, string column)
+        {
+            return Convert.ToInt32(reader[column]);
+        }
+
+        public static string ToString(IDataReader reader, string column)
+        {
+            string result = null;
+            //if (Convert.To)
+            if (!Convert.IsDBNull(reader[column]))
+                result = reader[column].ToString();
+            return result;
         }
     }
 }
