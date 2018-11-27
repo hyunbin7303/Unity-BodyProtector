@@ -56,7 +56,10 @@ public class Skills : NetworkBehaviour
     private void FixedUpdate()
     {
         if (IsAttackOn)
+        {
+            SoundManager.PlaySound("Fire");
             CmdFireBall();
+        }
     }
 
 
