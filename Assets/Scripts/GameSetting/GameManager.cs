@@ -34,13 +34,10 @@ public class GameManager : MonoBehaviour
             IsGameStart = false;
             IsAllPlayerDone = false;
             currentLevel = GameLevel.LOBBY;
-            playScript.accounts = new List<Varlab.Database.Domain.Account>();
-
-            Debug.Log("[Loader.cs]: CallOrder(2) - Created the GameManager instance");
+            playScript = new PlayerManager();
         }
         else if (instance != this)
         {
-            Debug.Log("[Loader.cs]: CallOrder(3) - Destroying the GameManager!");
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);

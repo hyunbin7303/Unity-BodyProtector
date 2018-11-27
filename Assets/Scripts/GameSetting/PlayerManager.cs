@@ -5,7 +5,15 @@ using Varlab.Database.Domain;
 
 public class PlayerManager : MonoBehaviour
 {
+    public int currentPlayerCount;
     public List<Account> accounts;
+
+
+    public PlayerManager()
+    {
+        currentPlayerCount = 0;
+        accounts = new List<Account>();
+    }
 
 
 
