@@ -1,9 +1,13 @@
 ﻿
+using System;
+using UnityEngine;
+
 namespace Varlab.Database.Domain
 {
     /// <summary>
     /// An entity model representing the Account table.
     /// </summary>
+    [Serializable]
     public class Account
     {
         public int AccountID { get; set; }

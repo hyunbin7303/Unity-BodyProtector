@@ -29,6 +29,7 @@ namespace Varlab.DataLayer
             try
             {
                 // Open database connection
+                Debug.Log("[AccountDAL.cs][CreateAccount]: Opening db connection");
                 conn.Open();
                 SqliteCommand cmd = conn.CreateCommand();
 
@@ -46,17 +47,30 @@ namespace Varlab.DataLayer
 
                 // Execute nonquery command
                 cmd.CommandText = query;
-                cmd.ExecuteNonQuery();
+                Debug.Log("[AccountDAL.cs][CreateAccount]: Executing SQL insert command...");
+                int result = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                if (result > 0)
+                {
+                    Debug.Log("[AccountDAL.cs][CreateAccount]: SUCCESS. Created the account!");
+                }
+                else
+                {
+                    Debug.Log("[AccountDAL.cs][CreateAccount]: INVALID. Could not create the account...");
+                }
             }
             catch (Exception ex)
             {
                 Debug.LogError(ex.Message);
+                Debug.Log("[AccountDAL.cs][CreateAccount]: ERROR. Exception thrown. Could not create account");
             }
             finally
             {
                 if (conn != null)
                 {
+                    Debug.Log("[AccountDAL.cs][CreateAccount]: Closing db connection");
                     conn.Close();
+                    conn.Dispose();
                 }
             }
         }
@@ -70,6 +84,7 @@ namespace Varlab.DataLayer
             try
             {
                 // Open database connection
+                Debug.Log("[AccountDAL.cs]: Opening db connection");
                 conn.Open();
                 SqliteCommand cmd = conn.CreateCommand();
 
@@ -99,19 +114,31 @@ namespace Varlab.DataLayer
                             account.RoundsWon = DatabaseUtil.ToInt32(reader, "RoundsWon");
                             account.RoundsLost = DatabaseUtil.ToInt32(reader, "RoundsLost");
                         }
+
+                        Debug.Log("[AccountDAL.cs]: SUCCESS. Found the accountID=" + id);
+                    }
+                    else
+                    {
+                        account = null;
+                        Debug.Log("[AccountDAL.cs]: Could not find Account info. accountID=" + id + " does not exist");
                     }
                 }
+
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
                 Debug.LogError(ex.Message);
+                Debug.LogError("[AccountDAL.cs]: ERROR. Exception thrown. Failed to retrieve the Account info");
                 account = null;
             }
             finally
             {
                 if (conn != null)
                 {
+                    Debug.Log("[AccountDAL.cs]: Closing db connection");
                     conn.Close();
+                    conn.Dispose();
                 }
             }
 
@@ -127,6 +154,7 @@ namespace Varlab.DataLayer
             try
             {
                 // Open database connection
+                Debug.Log("[AccountDAL.cs][GetAccountByUsename]: Opening db connection");
                 conn.Open();
                 SqliteCommand cmd = conn.CreateCommand();
 
@@ -155,6 +183,8 @@ namespace Varlab.DataLayer
                         account.RoundsLost = DatabaseUtil.ToInt32(reader, "RoundsLost");
                     }
                 }
+
+                cmd.Dispose();
             }
             catch (Exception ex)
             {
@@ -162,7 +192,12 @@ namespace Varlab.DataLayer
             }
             finally
             {
-                if (conn != null) { conn.Close(); }
+                if (conn != null)
+                {
+                    Debug.Log("[AccountDAL.cs][GetAccountByUsename]: Closing db connection");
+                    conn.Close();
+                    conn.Dispose();
+                }
             }
 
             return account;
