@@ -11,11 +11,14 @@ public class CustomNetworkManager : NetworkManager
 {
     public override void OnServerConnect(NetworkConnection conn)
     {
+      //  GameManager.instance.IsGameStart = true;
+
         Debug.Log("OnPlayerConnected");
     }
 
     public override void OnStopServer()
     {
+        GameManager.instance.IsGameStart = false;
         Debug.Log("[NetworkManager]: Server is stopping. Host has stopped.");
         base.OnStopServer();
     }
@@ -30,6 +33,7 @@ public class CustomNetworkManager : NetworkManager
     {
         base.OnClientConnect(conn);
         Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " gained!");
+
     }
 
 
@@ -37,5 +41,10 @@ public class CustomNetworkManager : NetworkManager
     {
         base.OnClientDisconnect(conn);
         Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " lost!");
+    }
+    private void Update()
+    {
+
+
     }
 }

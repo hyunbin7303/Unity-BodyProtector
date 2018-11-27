@@ -1,23 +1,30 @@
 ﻿
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerController : NetworkBehaviour
 {
 
     //Another control is the [Command] attribute.
     //The [Command] attribute indicates that the following function will be called by the Client,
-   // but will be run on the Server.
-
+    // but will be run on the Server.
+    private int Score;
     public GameObject capsule;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public Texture2D menuIcon;
+    public Text ScoreText;
+    public Health health;
+    public Varlab.Database.Domain.Account acc; 
 
     void Start () {
+        health = GetComponent<Health>();
+        //acc = new Varlab.Database.Domain.Account();
+       //acc = GetComponent<Varlab.Database.Domain.Account>();
     }
-	// Update is called once per frame
-	void Update () {
+
+    void Update () {
         /*
          LocalPlayer is part of NetworkBehaviour and all scripts that derive from NetworkBehaviour will 
          understand the concept of a LocalPlayer.
@@ -31,11 +38,27 @@ public class PlayerController : NetworkBehaviour
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
+
+
+
+
     }
     // This method is used for assigning color to the main character that player is playing.
     public override void OnStartLocalPlayer()
     {
         capsule.GetComponent<MeshRenderer>().material.color = Color.blue;
+        // this.gameObject.GetComponent<>().AccountID = acc.AccountID;
+        Varlab.Database.Domain.Account newPlayer = new Varlab.Database.Domain.Account();
+        newPlayer.AccountID = GameManager.instance.playScript.accounts.Count + 1;
+        newPlayer.Username = "KevAustin" + newPlayer.AccountID;
+        newPlayer.PasswordHash = "SOMETHING" + 100 + newPlayer.AccountID;
+        newPlayer.Email = newPlayer.Username + "@Conestogac.on.ca";
+        newPlayer.IsOnline = true;
+
+        acc = newPlayer;
+        GameManager.instance.playScript.accounts.Add(newPlayer);
+        GameManager.instance.IsGameStart = true;
+        Debug.Log("[NetworkManager]: Connection, New Player Added : " + newPlayer.Username);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -44,7 +67,16 @@ public class PlayerController : NetworkBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Detect enemy collision");
+                Debug.Log("Detect enemy collision with character.");
+                health.currentHealth-= 20;
+                Debug.Log("Health value : " + health.currentHealth);
+                if(health.currentHealth <= 0)
+                {
+                    Debug.Log("GAME PLAYER DIED.");
+
+                    GameManager.instance.playScript.SetPlayerOffline(acc);
+                    Destroy(this.gameObject);
+                }
             }
         }
     }

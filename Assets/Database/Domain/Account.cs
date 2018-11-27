@@ -16,6 +16,7 @@ namespace Varlab.Database.Domain
         public int TotalDeaths { get; set; }
         public int RoundsWon { get; set; }
         public int RoundsLost { get; set; }
+        public bool IsOnline { get; set; }
 
 
         public Account() : this(0, null, null)
