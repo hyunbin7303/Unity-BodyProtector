@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using Varlab.Database.Domain;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,10 +20,21 @@ public class GameManager : MonoBehaviour
     public SoundManager soundScript;
     public EnemyManager enemyScript;
     public PlayerManager playScript;
+
     public bool IsGameStart;
     public bool IsAllPlayerDone;
 
     public GameLevel currentLevel;
+
+    public List<int> connectedClientIDs;
+    public List<Account> accounts;
+
+    public int playersConnected;
+    public int playersAlive;
+
+    public int maximumEnemyLimit;
+    public int remainingEnemies;
+    public bool enableEnemySpawning;
 
 
     private void Awake()
@@ -34,7 +46,15 @@ public class GameManager : MonoBehaviour
             IsGameStart = false;
             IsAllPlayerDone = false;
             currentLevel = GameLevel.LOBBY;
-            playScript = new PlayerManager();
+
+            connectedClientIDs = new List<int>();
+            playersConnected = 0;
+            playersAlive = 0;
+            //playScript.accounts = new List<Account>();
+
+            enableEnemySpawning = false;
+            if (maximumEnemyLimit <= 0) { maximumEnemyLimit = 5; }
+            remainingEnemies = maximumEnemyLimit;
         }
         else if (instance != this)
         {
@@ -61,22 +81,27 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameStart)
         {
+            if (instance.playersAlive <= 0)
+            {
+                Debug.Log("All players are dead!");
+            }
+
             if (playScript != null)
             {
-                if (playScript.accounts != null)
-                {
-                    var count = playScript.accounts.Count(x => x.IsOnline);
-                    if (count == 0)
-                    {
-                        IsAllPlayerDone = true;
-                    }
-                }
+                //if (playScript.accounts != null)
+                //{
+                //    var count = playScript.accounts.Count(x => x.IsOnline);
+                //    if (count == 0)
+                //    {
+                //        IsAllPlayerDone = true;
+                //    }
+                //}
             }
             if (instance.IsAllPlayerDone && instance.currentLevel != GameLevel.ENDSCREEN)
             {
                 instance.IsAllPlayerDone = false;
                 instance.currentLevel = GameLevel.ENDSCREEN;
-                NetworkManager.singleton.ServerChangeScene("EndScene");
+                //NetworkManager.singleton.ServerChangeScene("EndScene");
             }
         }
     }

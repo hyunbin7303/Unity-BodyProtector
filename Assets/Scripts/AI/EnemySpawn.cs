@@ -29,7 +29,7 @@ public class EnemySpawn : NetworkBehaviour
     public override void OnStartServer()
     {
         _enableSpawning = true;
-        maxEnemyLimit = GameManager.instance.enemyScript.NumberOfEnemy;
+        maxEnemyLimit = GameManager.instance.maximumEnemyLimit;
         InvokeRepeating("SpawnEnemy", spawnTime, spawnTime);
     }
 
