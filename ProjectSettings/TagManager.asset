@@ -9,6 +9,7 @@ TagManager:
   - menuScreen
   - HelpScreen
   - FriendViewScreen
+  - IPAddressTag
   layers:
   - Default
   - TransparentFX
