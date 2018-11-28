@@ -21,9 +21,6 @@ public class InPlayGameUIManager : MonoBehaviour
         MainMenuScreenON = false;
         HelpScreenON = false;
         FriendScreenON = false;
-        menuScreenPanel = GameObject.FindGameObjectWithTag("menuScreen");
-        helpScreenPanel = GameObject.FindGameObjectWithTag("HelpScreen");
-        friendScreenPanel = GameObject.FindGameObjectWithTag("FriendViewScreen");
     }
     private void Update()
     {
@@ -35,7 +32,8 @@ public class InPlayGameUIManager : MonoBehaviour
     }
     public void CallMenuBar()
     {
-        if(!MainMenuScreenON)
+        menuScreenPanel = GameObject.FindGameObjectWithTag("menuScreen");
+        if (!MainMenuScreenON)
         {
             menuScreenPanel.transform.position = new Vector3(730f, 500f, 0f);
             MainMenuScreenON = true;
@@ -49,7 +47,8 @@ public class InPlayGameUIManager : MonoBehaviour
     }
     public void CallFriendbar()
     {
-        if(!FriendScreenON)
+        friendScreenPanel = GameObject.FindGameObjectWithTag("FriendViewScreen");
+        if (!FriendScreenON)
         {
             friendScreenPanel.transform.position = new Vector3(730f, 500f, 0f);
             FriendScreenON = true;
@@ -69,6 +68,7 @@ public class InPlayGameUIManager : MonoBehaviour
     }
     public void HelpScreenDisplay()
     {
+        helpScreenPanel = GameObject.FindGameObjectWithTag("HelpScreen");
         if (!HelpScreenON)
         {
             Debug.Log("HelpScreen Display");

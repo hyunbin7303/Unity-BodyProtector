@@ -60,7 +60,7 @@ public class Skills : NetworkBehaviour
     {
         if (IsAttackOn)
         {
-            SoundManager.PlaySound("Fire");
+            SoundManager.instance.PlaySound("Fire");
             CmdFireBall();
         }
     }

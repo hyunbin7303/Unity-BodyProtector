@@ -14,24 +14,20 @@ public class GameManager : MonoBehaviour
         INGAME,
         ENDSCREEN
     }
-
     public static GameManager instance = null;
-    public BoardManager boardScript;
-    public SoundManager soundScript;
-    public EnemyManager enemyScript;
-    public PlayerManager playScript;
+    private BoardManager boardScript;
+ //   private SoundManager soundScript;
+    private EnemyManager enemyScript;
+    private PlayerManager playScript;
 
     public bool IsGameStart;
     public bool IsAllPlayerDone;
-
     public GameLevel currentLevel;
 
     public List<int> connectedClientIDs;
     public List<Account> accounts;
-
     public int playersConnected;
     public int playersAlive;
-
     public int maximumEnemyLimit;
     public int remainingEnemies;
     public bool enableEnemySpawning;
@@ -61,6 +57,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        boardScript = GetComponent<BoardManager>();
+     //   soundScript = GetComponent<SoundManager>();
+        enemyScript = GetComponent<EnemyManager>();
+        playScript = GetComponent<PlayerManager>();
+
         InitGame();
     }
 

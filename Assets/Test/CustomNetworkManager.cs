@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using Varlab.Database.Domain;
 
 /// <summary>
@@ -11,6 +12,9 @@ using Varlab.Database.Domain;
 /// </summary>
 public class CustomNetworkManager : NetworkManager
 {
+
+
+
     public override void OnServerConnect(NetworkConnection conn)
     {
         GameManager.instance.IsGameStart = true;
@@ -98,4 +102,42 @@ public class CustomNetworkManager : NetworkManager
     //    base.OnClientDisconnect(conn);
     //    Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " lost!");
     //}
+
+
+    public void StartUpHost()
+    {
+        Debug.Log("StartUpHost Pressed");
+        setPort();
+        singleton.StartHost();
+    }
+    public void JoinGame()
+    {
+        setIPAddress();
+        setPort();
+        NetworkManager.singleton.StartClient();
+    }
+    void setPort()
+    {
+        singleton.networkPort = 7777;
+    }
+    void setIPAddress()
+    {
+        string ipAddress = GameObject.FindGameObjectWithTag("IPAddressTag").GetComponent<Text>().text;
+        Debug.Log("IPADDRESS INPUT : " + ipAddress);
+        singleton.networkAddress = ipAddress;
+    }
+    void SetPort()
+    {
+        NetworkManager.singleton.networkPort = 7777;
+    }
+
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

@@ -7,6 +7,7 @@ public class Loader : MonoBehaviour
 
     public GameObject gameManager;          //GameManager prefab to instantiate.
     public GameObject databaseManager;
+    public GameObject soundManager;
 
     void Awake()
     {
@@ -26,6 +27,11 @@ public class Loader : MonoBehaviour
         //Check if a DatabaseManager has already been assigned to static variable DatabaseManager.instance or if it's still null
         if (DatabaseManager.instance == null) {
             Instantiate(databaseManager);
+        }
+
+        if(SoundManager.instance == null)
+        {
+            Instantiate(soundManager);
         }
     }
 }

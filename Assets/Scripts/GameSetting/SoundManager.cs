@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
-
+    public static SoundManager instance = null;
     public static AudioClip AttackSound;
     public static AudioClip EnemyHitSound;
     public static AudioClip basicSound;
     static AudioSource source;
+    void Awake()
+    {
+        //Check if instance already exists
+        if (instance == null)
 
+            //if not, set instance to this
+            instance = this;
 
-	// Use this for initialization
-	void Start () {
+        //If instance already exists and it's not this:
+        else if (instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+
+        //Sets this to not be destroyed when reloading scene
+        DontDestroyOnLoad(gameObject);
+    }
+    // Use this for initialization
+    void Start () {
 
         AttackSound = Resources.Load<AudioClip>("Fire");
         source = GetComponent<AudioSource>();
@@ -26,14 +41,10 @@ public class SoundManager : MonoBehaviour {
     {
 
     }
-    public static void PlaySound(string clip)
+    public void PlaySound(string clip)
     {
-        switch(clip)
-        {
-            case "Fire":
-                source.PlayOneShot(AttackSound);
-                break;
 
-        }
+           source.PlayOneShot(AttackSound);
+
     }
 }
