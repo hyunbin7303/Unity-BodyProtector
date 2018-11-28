@@ -81,22 +81,12 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameStart)
         {
-            if (instance.playersAlive <= 0)
+            if (instance.playersAlive <= 0 && instance.currentLevel != GameLevel.ENDSCREEN)
             {
-                Debug.Log("All players are dead!");
+                instance.currentLevel = GameLevel.ENDSCREEN;
+                NetworkManager.singleton.ServerChangeScene("EndScene");
             }
 
-            if (playScript != null)
-            {
-                //if (playScript.accounts != null)
-                //{
-                //    var count = playScript.accounts.Count(x => x.IsOnline);
-                //    if (count == 0)
-                //    {
-                //        IsAllPlayerDone = true;
-                //    }
-                //}
-            }
             if (instance.IsAllPlayerDone && instance.currentLevel != GameLevel.ENDSCREEN)
             {
                 instance.IsAllPlayerDone = false;

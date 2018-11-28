@@ -21,11 +21,16 @@ public class UserHealthScript : MonoBehaviour
 
         if (GameManager.instance.IsGameStart)
         {
-            curHealth = maincharacter.GetComponent<PlayerController>().health.currentHealth;
-            if (curHealth > 0)
+            if (maincharacter.GetComponent<PlayerController>().health != null)
             {
-                healthBar.sizeDelta = new Vector2(curHealth, healthBar.sizeDelta.y);
+                curHealth = maincharacter.GetComponent<PlayerController>().health.currentHealth;
+                if (curHealth > 0)
+                {
+                    healthBar.sizeDelta = new Vector2(curHealth, healthBar.sizeDelta.y);
+                }
             }
+
+
 
         }
 

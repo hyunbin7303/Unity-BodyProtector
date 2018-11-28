@@ -8,6 +8,10 @@ public class InPlayGameUIManager : MonoBehaviour
     private GameObject menuScreenPanel;
     private GameObject helpScreenPanel;
     private GameObject friendScreenPanel;
+
+    private GameObject mainPlayerInfo;
+    private int HealthNumber;
+
     private bool MainMenuScreenON;
     private bool HelpScreenON;
     private bool FriendScreenON;
@@ -23,6 +27,7 @@ public class InPlayGameUIManager : MonoBehaviour
     }
     private void Update()
     {
+     //   HealthNumber = mainPlayerInfo.
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             CallMenuBar();
