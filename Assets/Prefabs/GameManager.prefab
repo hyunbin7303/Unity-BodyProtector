@@ -9,21 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1793757124019726}
+  m_RootGameObject: {fileID: 1310541393355528}
   m_IsPrefabAsset: 1
---- !u!1 &1793757124019726
+--- !u!1 &1310541393355528
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4057761800944060}
-  - component: {fileID: 114017260498455034}
-  - component: {fileID: 114795372359599290}
-  - component: {fileID: 114035646018973866}
-  - component: {fileID: 114892095496692374}
-  - component: {fileID: 114956847774257244}
+  - component: {fileID: 4038138879877706}
+  - component: {fileID: 114651401341759942}
+  - component: {fileID: 114774207325784860}
+  - component: {fileID: 114375058884672130}
+  - component: {fileID: 114996755674685068}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -31,25 +30,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4057761800944060
+--- !u!4 &4038138879877706
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: -10}
+  m_GameObject: {fileID: 1310541393355528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114017260498455034
+--- !u!114 &114375058884672130
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
+  m_GameObject: {fileID: 1310541393355528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e15e207f3dc5646b533d348338d499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberOfEnemy: 0
+--- !u!114 &114651401341759942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1310541393355528}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6421e85976e9155408bdf6f173165835, type: 3}
@@ -65,46 +76,23 @@ MonoBehaviour:
   maximumEnemyLimit: 0
   remainingEnemies: 0
   enableEnemySpawning: 0
---- !u!114 &114035646018973866
+--- !u!114 &114774207325784860
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f61401903d4b5f419f2ca8968cfbde8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114795372359599290
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
+  m_GameObject: {fileID: 1310541393355528}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aebf7bce0816d0b4a871756c05a40909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114892095496692374
+--- !u!114 &114996755674685068
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e15e207f3dc5646b533d348338d499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NumberOfEnemy: 0
---- !u!114 &114956847774257244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1793757124019726}
+  m_GameObject: {fileID: 1310541393355528}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4933ffbffd5b18e499e1c6ca823e04c8, type: 3}

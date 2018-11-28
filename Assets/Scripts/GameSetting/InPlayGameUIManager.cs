@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
+﻿using UnityEngine;
 
 public class InPlayGameUIManager : MonoBehaviour
 {
@@ -27,7 +24,13 @@ public class InPlayGameUIManager : MonoBehaviour
      //   HealthNumber = mainPlayerInfo.
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            Debug.Log("Check Escape Button");
             CallMenuBar();
+        }
+        if(Input.GetKeyUp(KeyCode.F1))
+        {
+            Debug.Log("Check F1 Button");
+            CallFriendbar();
         }
     }
     public void CallMenuBar()
@@ -42,7 +45,6 @@ public class InPlayGameUIManager : MonoBehaviour
         {
             menuScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
             MainMenuScreenON = false;
-
         }
     }
     public void CallFriendbar()
@@ -60,10 +62,10 @@ public class InPlayGameUIManager : MonoBehaviour
         }
     }
 
-
     public void ContinueGame()
     {
         Debug.Log("Continue this game.");
+        menuScreenPanel = GameObject.FindGameObjectWithTag("menuScreen");
         menuScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
     }
     public void HelpScreenDisplay()
@@ -101,5 +103,6 @@ public class InPlayGameUIManager : MonoBehaviour
         // Call Network Manager.
         //    NetworkManager.singleton.
         //    NetworkServer.connections;
+        Debug.Log("Deug Display Game Info");
     }
 }

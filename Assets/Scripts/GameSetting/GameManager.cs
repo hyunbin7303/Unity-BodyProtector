@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private BoardManager boardScript;
  //   private SoundManager soundScript;
     private EnemyManager enemyScript;
-    private PlayerManager playScript;
+    //private PlayerManager playScript;
 
     public bool IsGameStart;
     public bool IsAllPlayerDone;
@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-
             IsGameStart = false;
             IsAllPlayerDone = false;
             currentLevel = GameLevel.LOBBY;
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
         boardScript = GetComponent<BoardManager>();
      //   soundScript = GetComponent<SoundManager>();
         enemyScript = GetComponent<EnemyManager>();
-        playScript = GetComponent<PlayerManager>();
+        //playScript = GetComponent<PlayerManager>();
 
         InitGame();
     }
