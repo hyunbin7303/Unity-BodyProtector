@@ -18,6 +18,8 @@ public class CustomNetworkManager : NetworkManager
         GameManager.instance.playersAlive += 1;
         GameManager.instance.playersConnected += 1;
 
+        GetAccountInfo(conn.connectionId);
+
         Debug.Log("[OnServerConnect] connection id " + conn.connectionId);
         base.OnServerConnect(conn);
     }
@@ -30,6 +32,7 @@ public class CustomNetworkManager : NetworkManager
         try
         {
             GameManager.instance.connectedClientIDs.Clear();
+            GameManager.instance.accounts.Clear();
             GameManager.instance.playersAlive = 0;
             if (GameManager.instance.playersConnected > 0)
             {
@@ -49,8 +52,11 @@ public class CustomNetworkManager : NetworkManager
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         GameManager.instance.connectedClientIDs.Remove(conn.connectionId);
+        GameManager.instance.playersAlive -= 1;
         GameManager.instance.playersConnected -= 1;
         Debug.Log("[GameManager] amount of players left is " + GameManager.instance.playersConnected);
+
+        RemoveAccountFromList(conn.connectionId);
 
         base.OnServerDisconnect(conn);
         Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " has disconnected from the server.");
@@ -98,4 +104,42 @@ public class CustomNetworkManager : NetworkManager
     //    base.OnClientDisconnect(conn);
     //    Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " lost!");
     //}
+
+    public void GetAccountInfo(int connectionID)
+    {
+        Debug.Log("[NetworkManager.cs] Attempting to get account info from db");
+
+        Account newPlayer = new Account();
+        newPlayer.AccountID = connectionID + 1;
+        newPlayer.Username = "KevAustin" + newPlayer.AccountID;
+        newPlayer.PasswordHash = "SOMETHING" + 100 + newPlayer.AccountID;
+        newPlayer.Email = newPlayer.Username + "@conestogac.on.ca";
+
+        // Check if the Account exists in the database...
+        Account entity = DatabaseManager.instance.accountDAL.GetAccountByID(newPlayer.AccountID);
+        if (entity == null)
+        {
+            // If the account does not exist, this means that a new player record is inserted
+            DatabaseManager.instance.accountDAL.CreateAccount(newPlayer);
+        }
+        else
+        {
+            // Otherwise, we found the account information... save it to this local var
+            newPlayer = entity;
+        }
+
+        // Add to the list of accounts...
+        GameManager.instance.accounts.Add(newPlayer);
+    }
+
+    public void RemoveAccountFromList(int connectionID)
+    {
+        int accountID = connectionID + 1;
+
+        Account foundAccount = GameManager.instance.accounts.Find(x => x.AccountID == accountID);
+        if (foundAccount != null)
+        {
+            GameManager.instance.accounts.Remove(foundAccount);
+        }
+    }
 }

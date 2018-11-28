@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public class Bullet : MonoBehaviour {
+
+    public NetworkInstanceId netId;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -15,13 +18,12 @@ public class Bullet : MonoBehaviour {
         if(health != null)
         {
             Debug.Log("Enemy Take damage 50!");
-            health.TakeDamage(50);
+            health.TakeDamage(50, netId);
         }
         if (enemyCollidedHit.CompareTag("Enemy"))
         {
             Debug.Log("ENEMY COLLISION DETECT!");
             Destroy(gameObject);
-            
         }
     }
 

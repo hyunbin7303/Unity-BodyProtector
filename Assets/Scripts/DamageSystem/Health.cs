@@ -10,7 +10,7 @@ public class Health : NetworkBehaviour
     public RectTransform healthBar;
 
     public const int maxHealth = 100;
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, NetworkInstanceId attackerID)
     {
         if (!isServer)
         {
@@ -19,6 +19,17 @@ public class Health : NetworkBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+            GameObject player = NetworkServer.FindLocalObject(attackerID); //The server will find the player that is registered to the ID we have passed it.
+            if (player != null)
+            {
+                Debug.Log("Found player object");
+                player.GetComponent<PlayerScore>().IncreaseScore(1);
+            }
+            else
+            {
+                Debug.Log("Did not find player object");
+            }
+
             currentHealth = 0;
             Debug.Log("Dead!");
         }
