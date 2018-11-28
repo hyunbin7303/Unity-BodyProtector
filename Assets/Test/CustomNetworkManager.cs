@@ -166,7 +166,7 @@ public class CustomNetworkManager : NetworkManager
     }
     void setIPAddress()
     {
-        string ipAddress = GameObject.FindGameObjectWithTag("IPAddressTag").GetComponent<Text>().text;
+        string ipAddress = GameObject.FindGameObjectWithTag("IPAddressTag").GetComponent<InputField>().text;
         Debug.Log("IPADDRESS INPUT : " + ipAddress);
         singleton.networkAddress = ipAddress;
     }

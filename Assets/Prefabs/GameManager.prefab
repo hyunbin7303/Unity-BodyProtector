@@ -73,7 +73,7 @@ MonoBehaviour:
   accounts: []
   playersConnected: 0
   playersAlive: 0
-  maximumEnemyLimit: 0
+  maximumEnemyLimit: 35
   remainingEnemies: 0
   enableEnemySpawning: 0
 --- !u!114 &114774207325784860
