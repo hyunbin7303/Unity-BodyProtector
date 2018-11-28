@@ -162,8 +162,15 @@ public class Skills : NetworkBehaviour
             bulletSpawn.position,
             bulletSpawn.rotation);
 
+        //Fetch the NetworkIdentity component of the GameObject
+        // and assign the owner to the bullet
+        var m_Identity = GetComponent<NetworkIdentity>();
+
+        bullet.GetComponent<Bullet>().netId = GetComponent<NetworkIdentity>().netId;
         // Add velocity to the bullet
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+
+        //bullet.GetComponent<Bullet>().damage = ;
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 5.0f);
         NetworkServer.Spawn(bullet);
