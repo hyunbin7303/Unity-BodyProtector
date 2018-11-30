@@ -18,4 +18,11 @@ public class PlayerManager : MonoBehaviour
     //        }
     //    }
     //}
+
+    private void Update()
+    {
+        // if game object exist in the last scene,
+        //Destroy player object.
+
+    }
 }

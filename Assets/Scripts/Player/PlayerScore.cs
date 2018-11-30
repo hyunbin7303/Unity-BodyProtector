@@ -14,6 +14,7 @@ public class PlayerScore : NetworkBehaviour
     private void Start()
     {
         KillCountText.text = "0";
+       // if(this.gameObject)
     }
 
 
