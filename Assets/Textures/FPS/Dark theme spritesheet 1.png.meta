@@ -1,0 +1,719 @@
+fileFormatVersion: 2
+guid: 27e521f391dac054088447636578c9e5
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Dark theme spritesheet 1_0
+    21300002: Dark theme spritesheet 1_1
+    21300004: Dark theme spritesheet 1_2
+    21300006: Dark theme spritesheet 1_3
+    21300008: Dark theme spritesheet 1_4
+    21300010: Dark theme spritesheet 1_5
+    21300012: Dark theme spritesheet 1_6
+    21300014: Dark theme spritesheet 1_7
+    21300016: Dark theme spritesheet 1_8
+    21300018: Dark theme spritesheet 1_9
+    21300020: Dark theme spritesheet 1_10
+    21300022: Dark theme spritesheet 1_11
+    21300024: Dark theme spritesheet 1_12
+    21300026: Dark theme spritesheet 1_13
+    21300028: Dark theme spritesheet 1_14
+    21300030: Dark theme spritesheet 1_15
+    21300032: Dark theme spritesheet 1_16
+    21300034: Dark theme spritesheet 1_17
+    21300036: Dark theme spritesheet 1_18
+    21300038: Dark theme spritesheet 1_19
+    21300040: Dark theme spritesheet 1_20
+    21300042: Dark theme spritesheet 1_21
+    21300044: Dark theme spritesheet 1_22
+    21300046: Dark theme spritesheet 1_23
+    21300048: Dark theme spritesheet 1_24
+    21300050: Dark theme spritesheet 1_25
+    21300052: DT Health
+    21300054: DT Healthpack
+    21300056: Dark theme spritesheet 1_28
+  externalObjects: {}
+  serializedVersion: 7
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 3446
+        width: 188
+        height: 412
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a937e4a0c697d2a41ac766496678d534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 3439
+        width: 199
+        height: 427
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171126c6a204ce14c942b83c3184e9d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 3440
+        width: 195
+        height: 530
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec884359cdd229b42873dc61a1b841e0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 3439
+        width: 191
+        height: 579
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8161820f61fa1e144bce68da30f78075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 3446
+        width: 222
+        height: 586
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e599e8255c11b2c41b7d4c71a6e1be7a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3374
+        width: 466
+        height: 564
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457875df6890b7544a2f2fa3b6f7f33a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 3071
+        y: 3370
+        width: 467
+        height: 568
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818127f3d4cd3d643b3ba32b6685d6cf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 3598
+        y: 3418
+        width: 448
+        height: 620
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c5304e7e5243246a2cb47c8efea2bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 3392
+        width: 337
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b85fb0e7a68852f4f967bff5f2bf5e97
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_9
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 2415
+        width: 172
+        height: 995
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 592f2f49525b42b4f84c150e68781aed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 2416
+        width: 128
+        height: 638
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10703e1d65bfcc74595e9f94e6641b14
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 2418
+        width: 244
+        height: 496
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8caec22e01431d4a88bb9c1da4a58c0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_12
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 2418
+        width: 246
+        height: 528
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddf8969e2f9a084d892fe390679ad0f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_13
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 2414
+        width: 210
+        height: 620
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4f5946ce8a1674294b83e1080e3b8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_14
+      rect:
+        serializedVersion: 2
+        x: 2014
+        y: 2480
+        width: 420
+        height: 758
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a1c7c635b39954a9bbcf0ff2b94dd0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_15
+      rect:
+        serializedVersion: 2
+        x: 2510
+        y: 2479
+        width: 424
+        height: 759
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d5d343389cb7914e900656a2aec0a5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_16
+      rect:
+        serializedVersion: 2
+        x: 3058
+        y: 2479
+        width: 432
+        height: 779
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421ffe88246ecff468a6c8ab33111d67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 3570
+        y: 2490
+        width: 428
+        height: 774
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b42f11e458c68241a026d8c4c45f33b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1824
+        width: 1060
+        height: 506
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38e3450f73351fd4cba87b90a23a6a0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 2719
+        y: 1663
+        width: 455
+        height: 311
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66070e79be676c47b77898f5c7312f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_20
+      rect:
+        serializedVersion: 2
+        x: 2723
+        y: 1694
+        width: 607
+        height: 739
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10b54ed8b8f78748b72fe7ad092745e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_21
+      rect:
+        serializedVersion: 2
+        x: 3434
+        y: 1670
+        width: 620
+        height: 762
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d599154292a67840af6a624752089a6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_22
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1247
+        width: 1062
+        height: 499
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dcbc4f2ed7005c4cbbf47bb55105472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_23
+      rect:
+        serializedVersion: 2
+        x: 2826
+        y: 858
+        width: 343
+        height: 704
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c69b34141f91b84696330a79b97e053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_24
+      rect:
+        serializedVersion: 2
+        x: 3210
+        y: 858
+        width: 828
+        height: 627
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9647499f75d0bee4db7cc8ad5f3963df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_25
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 528
+        width: 872
+        height: 662
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c957696ab4d991743b951d0d98e31703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DT Health
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 178
+        width: 464
+        height: 462
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d73fff8fde9374c95710b474602164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DT Healthpack
+      rect:
+        serializedVersion: 2
+        x: 3392
+        y: 94
+        width: 630
+        height: 624
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c637df0e1b996a449923d6ec4aee6a1e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dark theme spritesheet 1_28
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 48
+        width: 1338
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f62f8a691ff649b4e9af609c70c07923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 840f4fb3959e62445ac29a576ef27570
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
