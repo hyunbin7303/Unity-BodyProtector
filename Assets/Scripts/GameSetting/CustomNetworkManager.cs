@@ -148,28 +148,33 @@ public class CustomNetworkManager : NetworkManager
     }
 
 
+    #region Menu Options
     public void StartUpHost()
     {
         Debug.Log("StartUpHost Pressed");
         setPort();
         singleton.StartHost();
     }
+
     public void JoinGame()
     {
         setIPAddress();
         setPort();
         NetworkManager.singleton.StartClient();
     }
+
     void setPort()
     {
         singleton.networkPort = 7777;
     }
+
     void setIPAddress()
     {
         string ipAddress = GameObject.FindGameObjectWithTag("IPAddressTag").GetComponent<InputField>().text;
         Debug.Log("IPADDRESS INPUT : " + ipAddress);
         singleton.networkAddress = ipAddress;
     }
+
     void SetPort()
     {
         NetworkManager.singleton.networkPort = 7777;
@@ -184,4 +189,5 @@ public class CustomNetworkManager : NetworkManager
         Application.Quit();
 #endif
     }
+    #endregion
 }
