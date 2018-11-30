@@ -21,8 +21,11 @@ public class GameResultManager : MonoBehaviour {
 
     public void ExitGame()
     {
+#if UNITY_EDITOR
         Debug.Log("EXIT GAME PRESSED");
-        Application.Quit();
-    }
 
+#else
+        Application.Quit();
+#endif
+    }
 }
