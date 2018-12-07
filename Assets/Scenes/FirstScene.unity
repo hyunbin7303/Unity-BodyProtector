@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1913358468
 Transform:
   m_ObjectHideFlags: 0
@@ -559,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ad5a98737da524ab20e98558c9134d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuScreenPanel: {fileID: 0}
 --- !u!1001 &1929961374
 Prefab:
   m_ObjectHideFlags: 0
@@ -723,7 +724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1979179807866676, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
       propertyPath: m_Name
-      value: Canvas_Main (1)
+      value: Canvas_Main
       objectReference: {fileID: 0}
     - target: {fileID: 114393491010054274, guid: 410b8479f7abb6a4e805e7728ce15e12,
         type: 2}
@@ -743,6 +744,88 @@ Prefab:
     - target: {fileID: 1966827521074416, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948946761496260, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114026525788039002, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224714266957500562, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.25000703
+      objectReference: {fileID: 0}
+    - target: {fileID: 224584138632524896, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1650
+      objectReference: {fileID: 0}
+    - target: {fileID: 114026525788039002, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114026525788039002, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452236788596862, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452236788596862, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452236788596862, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114452236788596862, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 224143719374696944, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 224996796939967100, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 224630507955892602, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 107.200195
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312179312446228, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632914808943562, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504364878742934, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 85.000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504364878742934, guid: 410b8479f7abb6a4e805e7728ce15e12,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -229.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 410b8479f7abb6a4e805e7728ce15e12, type: 2}
