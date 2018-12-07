@@ -2,9 +2,11 @@
 
 public class InPlayGameUIManager : MonoBehaviour
 {
-    private GameObject menuScreenPanel;
-    private GameObject helpScreenPanel;
-    private GameObject friendScreenPanel;
+    public RectTransform menuScreenPanel;
+    public RectTransform helpScreenPanel;
+    public RectTransform friendScreenPanel;
+
+    private Vector3 centerPosition = Vector3.zero;
 
     private GameObject mainPlayerInfo;
     private int HealthNumber;
@@ -13,15 +15,22 @@ public class InPlayGameUIManager : MonoBehaviour
     private bool HelpScreenON;
     private bool FriendScreenON;
 
+
     private void Start()
     {
+        menuScreenPanel.gameObject.SetActive(false);
         MainMenuScreenON = false;
+
+        helpScreenPanel.gameObject.SetActive(false);
         HelpScreenON = false;
+
+        friendScreenPanel.gameObject.SetActive(false);
         FriendScreenON = false;
     }
+
+
     private void Update()
     {
-     //   HealthNumber = mainPlayerInfo.
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             Debug.Log("Check Escape Button");
@@ -33,70 +42,72 @@ public class InPlayGameUIManager : MonoBehaviour
             CallFriendbar();
         }
     }
+
     public void CallMenuBar()
     {
-        menuScreenPanel = GameObject.FindGameObjectWithTag("menuScreen");
-        if (!MainMenuScreenON)
+        Debug.Log("CallMenuBar method. Showing menu bar");
+        if (menuScreenPanel.gameObject.activeSelf)
         {
-            menuScreenPanel.transform.position = new Vector3(730f, 500f, 0f);
-            MainMenuScreenON = true;
+            menuScreenPanel.localPosition = new Vector3(-2500f, 0f, 0f);
+            menuScreenPanel.gameObject.SetActive(false);
         }
         else
         {
-            menuScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
-            MainMenuScreenON = false;
+            menuScreenPanel.localPosition = centerPosition;
+            menuScreenPanel.gameObject.SetActive(true);
         }
     }
+
     public void CallFriendbar()
     {
-        friendScreenPanel = GameObject.FindGameObjectWithTag("FriendViewScreen");
-        if (!FriendScreenON)
+        if (friendScreenPanel.gameObject.activeSelf)
         {
-            friendScreenPanel.transform.position = new Vector3(730f, 500f, 0f);
-            FriendScreenON = true;
+            Debug.Log("Friend Screen Off");
+            friendScreenPanel.localPosition = new Vector3(-2000f, 0f, 0f);
+            friendScreenPanel.gameObject.SetActive(false);
         }
         else
         {
-            friendScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
-            FriendScreenON = false;
+            Debug.Log("Friend Screen On");
+            friendScreenPanel.anchoredPosition3D = new Vector3(10, -400f, 0f);
+            friendScreenPanel.gameObject.SetActive(true);
         }
     }
+
+    public void HelpScreenDisplay()
+    {
+        if (helpScreenPanel.gameObject.activeSelf)
+        {
+            Debug.Log("Help Screen Off");
+            helpScreenPanel.localPosition = new Vector3(-1500f, 0f, 0f);
+            helpScreenPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Help Screen On");
+            helpScreenPanel.localPosition = centerPosition;
+            helpScreenPanel.gameObject.SetActive(true);
+        }
+    }
+
 
     public void ContinueGame()
     {
         Debug.Log("Continue this game.");
-        menuScreenPanel = GameObject.FindGameObjectWithTag("menuScreen");
-        menuScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
-    }
-    public void HelpScreenDisplay()
-    {
-        helpScreenPanel = GameObject.FindGameObjectWithTag("HelpScreen");
-        if (!HelpScreenON)
-        {
-            Debug.Log("HelpScreen Display");
-            helpScreenPanel.transform.position = new Vector3(730f, 500f, 0f);
-            HelpScreenON = true;
-        }
-        else
-        {
-            Debug.Log("Help Screen Off");
-            helpScreenPanel.transform.position = new Vector3(-500f, 0f, 0f);
-            HelpScreenON = false;
-        }
-    }
-
-
-    public void PauseGame()
-    {
-        Debug.Log("Pause Game");
-        // networking.
+        menuScreenPanel.gameObject.SetActive(false);
+        helpScreenPanel.gameObject.SetActive(false);
     }
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
         Debug.Log("Quit Game button Pressed.");
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
+
     public void DisplayFriendInfo()
     {
 
