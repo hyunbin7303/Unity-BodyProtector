@@ -57,11 +57,15 @@ public class EnemyController : NetworkBehaviour
                 // Find the nearest target 
                 target = GetNearestTarget(players);
             }
+            else
+            {
+                target = null;
+            }
+
             if(health.currentHealth <= 0)
             {
                 Destroy(this.gameObject);
             }
-
         }
     }
 

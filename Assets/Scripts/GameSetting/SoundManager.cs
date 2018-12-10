@@ -24,23 +24,28 @@ public class SoundManager : MonoBehaviour {
             Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         AttackSound = Resources.Load<AudioClip>("Fire");
         source = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     public void SetUp()
     {
 
     }
+
     public void PlaySound(string clip)
     {
 

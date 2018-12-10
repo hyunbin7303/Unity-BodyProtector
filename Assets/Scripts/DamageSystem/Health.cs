@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+
+
 public class Health : NetworkBehaviour
 {
     [SyncVar(hook = "OnChangeHealth")]
-    public int currentHealth = maxHealth;
-    public RectTransform healthBar;
+    public float currentHealth = maxHealth;
+    public const float maxHealth = 100f;
 
-    public const int maxHealth = 100;
-    public void TakeDamage(int amount, NetworkInstanceId attackerID)
+    public RectTransform healthBar;
+    public Slider hudHealthBar;
+    public TMP_Text healthText;
+
+    public void TakeDamage(float amount, NetworkInstanceId attackerID)
     {
         if (!isServer)
         {
@@ -36,20 +42,45 @@ public class Health : NetworkBehaviour
         healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
     }
 
+    public void PlayerTakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+        if (hudHealthBar != null)
+        {
+            // apply changes to the health HUD
+            hudHealthBar.value = CalculateHealth();
+            healthText.text = currentHealth.ToString("F0");
+        }
+    }
+
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        if (hudHealthBar != null)
+        {
+            hudHealthBar.value = CalculateHealth();
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
-    void OnChangeHealth(int health)
+    void OnChangeHealth(float health)
     {
         healthBar.sizeDelta = new Vector2(health, healthBar.sizeDelta.y);
     }
+
+    float CalculateHealth()
+    {
+        return currentHealth / maxHealth;
+    }
+
     [ClientRpc]
     void RpcRespawn()
     {

@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour {
         if(health != null)
         {
             Debug.Log("Enemy Take damage 50!");
-            health.TakeDamage(50, netId);
+            health.TakeDamage(50f, netId);
         }
         if (enemyCollidedHit.CompareTag("Enemy"))
         {
@@ -26,7 +26,4 @@ public class Bullet : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
-
-
 }

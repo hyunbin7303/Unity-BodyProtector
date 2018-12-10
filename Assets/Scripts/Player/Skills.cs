@@ -11,8 +11,7 @@ public class Skills : NetworkBehaviour
     public Texture2D barsBackgroundTexture;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-
-    public ScoreCanvasControl scoreCanvas;
+    public float bulletSpeed = 6f;
 
     private bool IsSkill1On;
     private bool IsSkill2On;
@@ -20,10 +19,9 @@ public class Skills : NetworkBehaviour
     private bool IsSkill4On;
     private bool IsSkill5On;
     private bool IsAttackOn;
+
     private void Start()
     {
-        scoreCanvas.Show();
-
         for (int i = 0; i < 3; i++)
         {
             PlayerSkills[i].ID = allSkills[i].ID;
@@ -39,7 +37,7 @@ public class Skills : NetworkBehaviour
         IsSkill2On = Input.GetKeyDown(KeyCode.Alpha2);
         IsSkill3On = Input.GetKeyDown(KeyCode.Alpha3);
         IsAttackOn = Input.GetKeyDown(KeyCode.Space);
-        if (IsSkill1On)
+        if (IsSkill1On || IsAttackOn)
         {
             Debug.Log("SKILL 1 is selected");
             UseSpell(PlayerSkills[0].ID);
@@ -56,16 +54,6 @@ public class Skills : NetworkBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (IsAttackOn)
-        {
-            SoundManager.instance.PlaySound("Fire");
-            CmdFireBall();
-        }
-    }
-
-
     private void OnGUI()
     {
 #if UNITY_EDITOR
@@ -76,11 +64,11 @@ public class Skills : NetworkBehaviour
         Texture2D t = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_1.png");
         Texture2D t2 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_2.png");
         Texture2D t3= Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
-
 #endif
-        Rect rangeSkill1 = new Rect(100, Screen.height - 100, t.width - 20, t.height - 20);
-        Rect rangeSkill2 = new Rect(150, Screen.height - 100, t2.width - 20, t2.height - 20);
-        Rect rangeSkill3 = new Rect(200, Screen.height - 100, t3.width - 20, t3.height - 20);
+
+        Rect rangeSkill1 = new Rect(100, Screen.height - 50, t.width - 20, t.height - 20);
+        Rect rangeSkill2 = new Rect(150, Screen.height - 50, t2.width - 20, t2.height - 20);
+        Rect rangeSkill3 = new Rect(200, Screen.height - 50, t3.width - 20, t3.height - 20);
         if (GUI.Button(rangeSkill1, t))
         {
             UseSpell(PlayerSkills[0].ID);
@@ -115,7 +103,6 @@ public class Skills : NetworkBehaviour
                 "SKILL NAME : " + PlayerSkills[2].skillname + "\n" +
                 "SKILL DESCRIPTION : " + PlayerSkills[2].Description + "\n");
         }
-
     }
 
     private void UseSpell(int id)
@@ -123,6 +110,7 @@ public class Skills : NetworkBehaviour
         switch (id)
         {
             case 1:
+                SoundManager.instance.PlaySound("Fire");
                 CmdFireBall();
                 break;
             case 2:
@@ -168,17 +156,13 @@ public class Skills : NetworkBehaviour
 
         bullet.GetComponent<Bullet>().netId = GetComponent<NetworkIdentity>().netId;
         // Add velocity to the bullet
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
 
         //bullet.GetComponent<Bullet>().damage = ;
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 5.0f);
         NetworkServer.Spawn(bullet);
     }
-
-
-
-
 }
 
 

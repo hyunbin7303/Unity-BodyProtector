@@ -82,7 +82,7 @@ public class PlayerController : NetworkBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Detect enemy collision with character.");
-            health.currentHealth -= 20;
+            health.PlayerTakeDamage(20.0f);
             Debug.Log("Health value : " + health.currentHealth);
             if (health.currentHealth <= 0)
             {

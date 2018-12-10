@@ -26,7 +26,7 @@ public class EnemySpawn : NetworkBehaviour
         _enableSpawning = false;
     }
 
-    public override void OnStartServer()
+    void Start()
     {
         _enableSpawning = true;
         maxEnemyLimit = GameManager.instance.maximumEnemyLimit;

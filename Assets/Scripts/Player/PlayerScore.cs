@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -9,12 +10,11 @@ using UnityEngine.UI;
 public class PlayerScore : NetworkBehaviour
 {
     public int currentScore = 0;
-    public Text KillCountText;
+    public TMP_Text killCountText;
 
     private void Start()
     {
-        KillCountText.text = "0";
-       // if(this.gameObject)
+        killCountText.text = "0";
     }
 
 
@@ -32,6 +32,6 @@ public class PlayerScore : NetworkBehaviour
 
     public void SetText()
     {
-        KillCountText.text = currentScore.ToString();
+        killCountText.text = currentScore.ToString();
     }
 }

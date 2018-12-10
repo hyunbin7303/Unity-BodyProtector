@@ -2,31 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
-public class GameStartMenu : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
-    public void HostStart()
+public class GameStartMenu : MonoBehaviour
+{
+    void Start()
     {
-        Debug.Log("HOST Press Ready Pressed");
 
     }
-    public void ClientPressReady()
+
+    void Update()
     {
-        Debug.Log("Client Press Ready Pressed");
-       // NetworkManager.singleton.client client = new NetworkManager.singleton.client();
 
     }
+
+
+    public void StartServer()
+    {
+        SceneManager.LoadScene("Lobby Scene");
+    }
+
     public void ExitGame()
     {
 #if UNITY_EDITOR

@@ -25,13 +25,14 @@ public class Loader : MonoBehaviour
         //    Instantiate(soundManager);
 
         //Check if a DatabaseManager has already been assigned to static variable DatabaseManager.instance or if it's still null
-        if (DatabaseManager.instance == null) {
-            Instantiate(databaseManager);
-        }
+        //if (DatabaseManager.instance == null) 
+        //{
+        //    Instantiate(databaseManager);
+        //}
 
-        if(SoundManager.instance == null)
-        {
-            Instantiate(soundManager);
-        }
+        //if(SoundManager.instance == null)
+        //{
+        //    Instantiate(soundManager);
+        //}
     }
 }

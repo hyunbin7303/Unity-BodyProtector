@@ -7,7 +7,8 @@ public class UserHealthScript : MonoBehaviour
 
     public RectTransform healthBar;
     private GameObject maincharacter;
-    private int curHealth;
+    private float curHealth;
+
     // Use this for initialization
     void Start()
     {
