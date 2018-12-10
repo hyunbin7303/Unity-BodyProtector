@@ -47,6 +47,7 @@ public class CustomNetworkManager : NetworkManager
         }
         catch (Exception ex)
         {
+            string error = ex.Message;
             Debug.LogError("GameManager instance client id for HOST not found");
         }
 

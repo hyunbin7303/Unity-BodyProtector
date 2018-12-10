@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameStartMenu : CustomNetworkManager {
+public class GameStartMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +29,11 @@ public class GameStartMenu : CustomNetworkManager {
     }
     public void ExitGame()
     {
+#if UNITY_EDITOR
+        Debug.Log("EXIT GAME PRESSED");
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

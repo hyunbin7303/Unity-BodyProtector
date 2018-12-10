@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class InPlayGameUIManager : MonoBehaviour
 {
     public RectTransform menuScreenPanel;
@@ -11,21 +14,14 @@ public class InPlayGameUIManager : MonoBehaviour
     private GameObject mainPlayerInfo;
     private int HealthNumber;
 
-    private bool MainMenuScreenON;
-    private bool HelpScreenON;
-    private bool FriendScreenON;
-
 
     private void Start()
     {
         menuScreenPanel.gameObject.SetActive(false);
-        MainMenuScreenON = false;
 
         helpScreenPanel.gameObject.SetActive(false);
-        HelpScreenON = false;
 
         friendScreenPanel.gameObject.SetActive(false);
-        FriendScreenON = false;
     }
 
 
@@ -48,11 +44,13 @@ public class InPlayGameUIManager : MonoBehaviour
         Debug.Log("CallMenuBar method. Showing menu bar");
         if (menuScreenPanel.gameObject.activeSelf)
         {
+            Debug.Log("Menu Screen Off");
             menuScreenPanel.localPosition = new Vector3(-2500f, 0f, 0f);
             menuScreenPanel.gameObject.SetActive(false);
         }
         else
         {
+            Debug.Log("Menu Screen On");
             menuScreenPanel.localPosition = centerPosition;
             menuScreenPanel.gameObject.SetActive(true);
         }
