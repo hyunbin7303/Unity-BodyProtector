@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9723d4ecf7be45c429bef33bc9d9ea37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 10
+  expireRate: 5
 --- !u!114 &114528085101782776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +168,7 @@ MonoBehaviour:
     i14: 48
     i15: 206
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
 --- !u!135 &135128590509287544
 SphereCollider:
   m_ObjectHideFlags: 1

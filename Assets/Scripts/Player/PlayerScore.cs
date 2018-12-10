@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// </summary>
 public class PlayerScore : NetworkBehaviour
 {
     public int currentScore = 0;
@@ -17,16 +17,13 @@ public class PlayerScore : NetworkBehaviour
         killCountText.text = "0";
     }
 
-
     public void IncreaseScore(int amount)
     {
-        if (!isServer)
-        {
-            Debug.Log("Is in the server?");
+        if (!isLocalPlayer)
             return;
-        }
 
         currentScore += amount;
+        Debug.Log("JOHN CENA. Player score: " + currentScore);
         SetText();
     }
 

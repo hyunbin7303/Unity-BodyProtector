@@ -11,7 +11,6 @@ public class Skills : NetworkBehaviour
     public Texture2D barsBackgroundTexture;
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-    public float bulletSpeed = 6f;
 
     private bool IsSkill1On;
     private bool IsSkill2On;
@@ -33,6 +32,12 @@ public class Skills : NetworkBehaviour
 
     private void Update()
     {
+        // LocalPlayer is part of Network NetworkBehaviour and all scripts that derive from NetworkBehaviour will 
+        // understand the concept of a LocalPlayer. This statement basically says: "Do I (the client) have authority over this player"
+        if (!isLocalPlayer) {
+            return;
+        }
+
         IsSkill1On = Input.GetKeyDown(KeyCode.Alpha1);
         IsSkill2On = Input.GetKeyDown(KeyCode.Alpha2);
         IsSkill3On = Input.GetKeyDown(KeyCode.Alpha3);
@@ -54,8 +59,12 @@ public class Skills : NetworkBehaviour
         }
     }
 
-    private void OnGUI()
+    void OnGUI()
     {
+        if (!isLocalPlayer) {
+            return;
+        }
+
 #if UNITY_EDITOR
         Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_1.png", typeof(Texture2D));
         Texture2D t2 = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_2.png", typeof(Texture2D));
@@ -63,7 +72,7 @@ public class Skills : NetworkBehaviour
 #else
         Texture2D t = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_1.png");
         Texture2D t2 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_2.png");
-        Texture2D t3= Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
+        Texture2D t3 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
 #endif
 
         Rect rangeSkill1 = new Rect(100, Screen.height - 50, t.width - 20, t.height - 20);
@@ -128,19 +137,11 @@ public class Skills : NetworkBehaviour
         }
     }
 
-    private bool GetHealth()
-    {
-        return true;
-    }
-    private bool GetMana()
-    {
-        return true;
-    }
 
-    /* Fire Method 
-     * Description : Used for firing bullet.
-     * Currently working on right now.
-     */
+    /// <summary>
+    /// Used to project a "bullet" spell.
+    /// TODO: working on it
+    /// </summary>
     [Command]
     private void CmdFireBall()
     {
@@ -152,17 +153,14 @@ public class Skills : NetworkBehaviour
 
         //Fetch the NetworkIdentity component of the GameObject
         // and assign the owner to the bullet
-        var m_Identity = GetComponent<NetworkIdentity>();
-
-        bullet.GetComponent<Bullet>().netId = GetComponent<NetworkIdentity>().netId;
+        //bullet.GetComponent<Bullet>().netId = GetComponent<NetworkIdentity>().netId;
         // Add velocity to the bullet
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+        //bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6f;
 
         //bullet.GetComponent<Bullet>().damage = ;
         // Destroy the bullet after 2 seconds
-        Destroy(bullet, 5.0f);
-        NetworkServer.Spawn(bullet);
+        //Destroy(bullet, 5.0f);
+        //NetworkServer.Spawn(bullet);
+        NetworkServer.SpawnWithClientAuthority(bullet, connectionToClient);
     }
 }
-
-

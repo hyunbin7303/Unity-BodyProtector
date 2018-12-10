@@ -48,24 +48,16 @@ public class EnemyController : NetworkBehaviour
         if (!isServer)
             return;
 
-        if (NetworkServer.active)
+        // Search for any players in the map
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players != null)
         {
-            // Search for any players in the map
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            if (players != null)
-            {
-                // Find the nearest target 
-                target = GetNearestTarget(players);
-            }
-            else
-            {
-                target = null;
-            }
-
-            if(health.currentHealth <= 0)
-            {
-                Destroy(this.gameObject);
-            }
+            // Find the nearest target 
+            target = GetNearestTarget(players);
+        }
+        else
+        {
+            target = null;
         }
     }
 

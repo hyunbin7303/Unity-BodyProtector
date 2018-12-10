@@ -6,24 +6,31 @@ using Varlab.Database.Domain;
 
 public class PlayerController : NetworkBehaviour
 {
-
-    //Another control is the [Command] attribute.
-    //The [Command] attribute indicates that the following function will be called by the Client,
-    // but will be run on the Server.
+    // The [Command] attribute indicates that the following function will be called by the Client, but will be run on the Server.
     [SyncVar]
     private int Score;
 
     public GameObject capsule;
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
     public Texture2D menuIcon;
     public Text ScoreText;
     public Health health;
+
+    public string tmpNetworkId;
+
     //public Varlab.Database.Domain.Account acc; 
 
     void Start ()
     {
-        health = GetComponent<Health>();
+        var netId = GetComponent<NetworkIdentity>().netId;
+
+        Debug.Log("[PlayerController.cs] Network Id: " + netId);
+        if (isLocalPlayer)
+        {
+            Debug.Log("[PlayerController.cs] Is LocalPlayer for: " + netId);
+            health = GetComponent<Health>();
+        }
+
+        tmpNetworkId = netId.ToString();
     }
 
     void Update ()
@@ -39,8 +46,13 @@ public class PlayerController : NetworkBehaviour
 
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+        MovePlayer(x, z);
+    }
+
+    void MovePlayer(float horizontal, float vertical)
+    {
+        transform.Rotate(0, horizontal, 0);
+        transform.Translate(0, 0, vertical);
     }
 
     // This method is used for assigning color to the main character that player is playing.
@@ -76,9 +88,6 @@ public class PlayerController : NetworkBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!isLocalPlayer)
-            return;
-
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Detect enemy collision with character.");
@@ -89,18 +98,16 @@ public class PlayerController : NetworkBehaviour
                 Debug.Log("GAME PLAYER DIED.");
 
                 GameManager.instance.playersAlive -= 1;
-
-                //GameManager.instance.playScript.SetPlayerOffline(acc);
                 CmdPlayerDie();
             }
         }
-
-        // Collision detection only happens on the server-side...
-        // Somehow tell the client that their instance died!
     }
 
 
-    // Tell the server that player has died...
+    /// <summary>
+    /// On the server, tell every client that a player
+    /// has died. We destroy the gameobject if this happens
+    /// </summary>
     [Command]
     public void CmdPlayerDie()
     {
