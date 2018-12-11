@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using Messyspace;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
 
 public class EnemyController : NetworkBehaviour
 {
+    private const float kDefaultSpeed = 2.0f;
+
     [SyncVar]
     public float lookRadius = 10.0f;
     // The health of the enemy
@@ -13,6 +16,8 @@ public class EnemyController : NetworkBehaviour
     [SyncVar]
     public bool playerInSight;
 
+    // The speed of the enemy
+    public float speed = kDefaultSpeed;
     // Where the player character is in relation to NPC
     public Vector3 direction;
     // How far away is the player from the NPC
@@ -68,9 +73,22 @@ public class EnemyController : NetworkBehaviour
 
         if (target != null)
         {
-            // Nearest target found, apply the distance calculations
-            // on the server and 
-            CmdUpdateNetwork();
+            // The enemy only follows the player if they are ALIVE
+            //var targetStatus = target.GetComponent<PlayerStats>().status;
+            //if (targetStatus == CharacterStatus.ALIVE)
+            //{
+                // Nearest target found, apply the distance calculations
+                // on the server and have the enemy follow the nearest player
+                CmdUpdateNetwork();
+            //}
+            //else
+            //{
+            //    CmdStopEnemy();
+            //}
+        }
+        else
+        {
+            CmdStopEnemy();
         }
     }
 
@@ -80,8 +98,13 @@ public class EnemyController : NetworkBehaviour
         direction = target.position - transform.position;
         distance = Vector3.Distance(target.position, transform.position);
 
+        if (navMeshAgent.speed <= 0.0f)
+        {
+            navMeshAgent.speed = speed;
+        }
         if (distance <= lookRadius)
         {
+            navMeshAgent.speed = speed;
             // Move towards the target (player)
             navMeshAgent.SetDestination(target.position);
 
@@ -96,6 +119,19 @@ public class EnemyController : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Command to make the enemy stop.
+    /// Changes the speed of the enemy to 0 which stops the enemy.
+    /// </summary>
+    [Command]
+    void CmdStopEnemy()
+    {
+        navMeshAgent.speed = 0.0f;
+    }
+
+    /// <summary>
+    /// Make the enemy rotate and face their target.
+    /// </summary>
     void FaceTarget()
     {
         // Get a direction vector of where the target is
@@ -115,20 +151,28 @@ public class EnemyController : NetworkBehaviour
 
         foreach (GameObject potentialTarget in targets)
         {
-            Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
-            float distSqrToTarget = directionToTarget.sqrMagnitude;
-            // If the calculated distance is less than the closest target's distance
-            // then we have found a new potential target
-            if (distSqrToTarget < closestDistance)
+            // The enemy only follows the player if they are ALIVE
+            var targetStatus = potentialTarget.GetComponent<PlayerStats>().status;
+            if (targetStatus == CharacterStatus.ALIVE)
             {
-                closestDistance = distSqrToTarget;
-                newTarget = potentialTarget.transform;  // Found the new target!
+                Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
+                float distSqrToTarget = directionToTarget.sqrMagnitude;
+                // If the calculated distance is less than the closest target's distance
+                // then we have found a new potential target
+                if (distSqrToTarget < closestDistance)
+                {
+                    closestDistance = distSqrToTarget;
+                    newTarget = potentialTarget.transform;  // Found the new target!
+                }
             }
+            // otherwise if no target was found, we return null...
         }
 
         return newTarget;
     }
 
+
+    #region Test
     /// <summary>
     /// Draw a wireframe sphere for the enemy's search radius.
     /// </summary>
@@ -155,4 +199,5 @@ public class EnemyController : NetworkBehaviour
             Gizmos.DrawLine(transform.position, target.position);
         }
     }
+    #endregion
 }
