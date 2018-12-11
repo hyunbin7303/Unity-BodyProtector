@@ -18,6 +18,10 @@ public class PlayerController : NetworkBehaviour
 
     //public Varlab.Database.Domain.Account acc; 
 
+    [SerializeField]
+    private Canvas m_Canvas;
+    private bool m_SeeCanvas;
+
     void Start ()
     {
         health = GetComponent<Health>();
@@ -41,6 +45,14 @@ public class PlayerController : NetworkBehaviour
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         MovePlayer(x, z);
+        if (Input.GetKeyDown("tab"))
+        {
+            if (m_Canvas)
+            {
+                m_SeeCanvas = !m_SeeCanvas;
+                m_Canvas.gameObject.SetActive(m_SeeCanvas);
+            }
+        }
     }
 
     void MovePlayer(float horizontal, float vertical)

@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286836618470996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313d3a15c8e265946b4f34e3cee064a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b28c21a772afda4993dafcec4a568e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   capsule: {fileID: 1987606309925166}
@@ -1611,24 +1611,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allSkills:
   - icon: {fileID: 0}
-    ID: 1
-    skillname: Get Vitamin
-    Description: This skill is used for getting health.
-    cooldown: 5
-  - icon: {fileID: 0}
-    ID: 2
-    skillname: Get Anti
-    Description: Getting Anti protection.
-    cooldown: 10
-  - icon: {fileID: 0}
-    ID: 3
-    skillname: Super Ultra
-    Description: This skill enables enemy unmovable for few seconds.
-    cooldown: 20
+    ID: 0
+    skillname: fure
+    Description: fsafds
+    cooldown: 0
   - icon: {fileID: 0}
     ID: 0
-    skillname: 
-    Description: 
+    skillname: dsfdsf
+    Description: sdfdsf
     cooldown: 0
   - icon: {fileID: 0}
     ID: 0
@@ -1638,18 +1628,18 @@ MonoBehaviour:
   PlayerSkills:
   - icon: {fileID: 0}
     ID: 0
-    skillname: 
-    Description: 
+    skillname: sdfds
+    Description: sdfds
     cooldown: 0
   - icon: {fileID: 0}
     ID: 0
-    skillname: 
-    Description: 
+    skillname: sdfds
+    Description: asfasf
     cooldown: 0
   - icon: {fileID: 0}
     ID: 0
-    skillname: 
-    Description: 
+    skillname: asdasd
+    Description: asdasd
     cooldown: 0
   barsBackgroundTexture: {fileID: 2800000, guid: cbfa7a00299e1b14ebc34e46d5e08268,
     type: 3}
@@ -2130,9 +2120,9 @@ MonoBehaviour:
   PlayerHP: 100
   status: 0
   Attributes:
-  - attribute: {fileID: 11400000, guid: 6a1f267ca7884e34e847af8b941bb245, type: 2}
+  - attribute: {fileID: 11400000, guid: 331573135dd4cc147891dee6ae81b391, type: 2}
     amount: 10
-  - attribute: {fileID: 11400000, guid: e1e92ce9bb5744e458e4e16bedf85d7a, type: 2}
+  - attribute: {fileID: 11400000, guid: e6aa7dfb68e127b4cb9a4f2e570b29f0, type: 2}
     amount: 10
   Playerskills:
   - {fileID: 11400000, guid: 705252f06ec9e3a4fa1528b4bf520b55, type: 2}
@@ -2547,8 +2537,8 @@ RectTransform:
   m_Father: {fileID: 224219568473257686}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2698,7 +2688,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

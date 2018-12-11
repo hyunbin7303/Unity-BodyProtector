@@ -22,7 +22,7 @@ namespace Prototype.NetworkLobby
             if (!isInGame)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.F12))
             {
                 ToggleVisibility(!isDisplayed);
             }

@@ -13,8 +13,6 @@ public class RescueTrigger : NetworkBehaviour
 
     private string myNetId;
     private NetworkInstanceId targetId;
-
-
     //void Start()
     //{
     //    myNetId = gameObject.GetComponent<PlayerController>().tmpNetworkId;

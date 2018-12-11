@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
+  m_Name: Vaccine1
+  m_EditorClassIdentifier: 
+  ID: 1
+  skillname: Vacchine-H1
+  Description: Using vacchine 1
+  cooldown: 5
+  mana: 10
+  icon: {fileID: 21300000, guid: 883b871fd1d51454a8c429b085190938, type: 3}
+  LevelNeeded: 0
+  XPNeeded: 0
+  AffectedAttributes: []
