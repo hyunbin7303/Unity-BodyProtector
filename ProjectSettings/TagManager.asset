@@ -10,6 +10,7 @@ TagManager:
   - HelpScreen
   - FriendViewScreen
   - IPAddressTag
+  - HUD
   layers:
   - Default
   - TransparentFX
