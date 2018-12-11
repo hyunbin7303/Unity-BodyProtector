@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e34ea08ef52e24299f26d8715b6155, type: 3}
+  m_Name: Skill 2
+  m_EditorClassIdentifier: 
+  Description: asdf
+  icon: {fileID: 21300000, guid: 3e8ea8d6463464104a1b57d4a095b108, type: 3}
+  LevelNeeded: 2
+  XPNeeded: 50
+  AffectedAttributes:
+  - attribute: {fileID: 11400000, guid: e1e92ce9bb5744e458e4e16bedf85d7a, type: 2}
+    amount: 10
+  - attribute: {fileID: 11400000, guid: 0cc5b77fb3bc6534785056d68f92e774, type: 2}
+    amount: 20
+  - attribute: {fileID: 11400000, guid: 0a91cc5c3d577454895117f45c17d729, type: 2}
+    amount: 30
