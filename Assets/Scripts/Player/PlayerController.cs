@@ -1,4 +1,5 @@
 ﻿
+using Messyspace;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using Varlab.Database.Domain;
 public class PlayerController : NetworkBehaviour
 {
     public GameObject capsule;
+    public PlayerStats playerStat;
+
     public Texture2D menuIcon;
     public Text ScoreText;
     public Health health;
@@ -18,6 +21,7 @@ public class PlayerController : NetworkBehaviour
     void Start ()
     {
         health = GetComponent<Health>();
+        playerStat = GetComponent<PlayerStats>();
 
         // TESTING
         var netId = GetComponent<NetworkIdentity>().netId;
@@ -88,7 +92,7 @@ public class PlayerController : NetworkBehaviour
                 Debug.Log("GAME PLAYER DIED.");
 
                 GameManager.instance.playersAlive -= 1;
-                RpcPlayerDie();
+                CmdPlayerDie();
             }
         }
     }
@@ -105,14 +109,42 @@ public class PlayerController : NetworkBehaviour
         //Destroy(this.gameObject);
     }
 
-    [ClientRpc]
-    public void RpcPlayerDie()
+    [Command]
+    public void CmdOnPlayerRescue()
     {
-        ChangePlayerColor(Color.red);
+        // Set the status of the character to ALIVE
+        playerStat.status = CharacterStatus.ALIVE;
+        // Restore the health of the "rescued" player to full
+        // SyncVar will sync the health bar for all clients to see
+        health.currentHealth = Health.maxHealth;
+
+        GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+
+        // We got to synchronize the character's colour across the network...
+        // 1. Target other clients and change the material to WHITE
+        // 2. Target specific clietn and change the material to BLUE
+        RpcOnPlayerRescue();
+        TargetOnPlayerRescue(connectionToClient);
     }
 
-    void ChangePlayerColor(Color newColor)
+    /// <summary>
+    /// Targets all clients.
+    /// When player is rescued, make changes to all client player objects.
+    /// </summary>
+    [ClientRpc]
+    void RpcOnPlayerRescue()
     {
-        capsule.GetComponent<MeshRenderer>().material.color = newColor;
+        GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+    }
+
+    /// <summary>
+    /// Targeted at a specific client player object.
+    /// When player is rescued, make changes to that player object.
+    /// </summary>
+    /// <param name="conn">The specific client we want to RPC.</param>
+    [TargetRpc]
+    void TargetOnPlayerRescue(NetworkConnection conn)
+    {
+        GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
     }
 }

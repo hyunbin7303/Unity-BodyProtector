@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-
+using Messyspace;
 
 public class Health : NetworkBehaviour
 {
@@ -16,9 +16,14 @@ public class Health : NetworkBehaviour
     public Slider hudHealthBar;
     public TMP_Text healthText;
 
+    /// The Player's stat includes the name, health, etc.
+    private PlayerStats playerStat;
+
 
     void Start()
     {
+        playerStat = GetComponent<PlayerStats>();
+
         if (isLocalPlayer)
         {
             if (hudHealthBar != null)
@@ -65,6 +70,12 @@ public class Health : NetworkBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+            if (playerStat.status == CharacterStatus.ALIVE)
+            {
+                // Once the player's health is zero, we call upon
+                // all clients (and server) to sync data across network
+                RpcOnPlayerHealthZero();
+            }
             currentHealth = 0;
         }
     }
@@ -83,5 +94,23 @@ public class Health : NetworkBehaviour
     float CalculateHealth()
     {
         return currentHealth / maxHealth;
+    }
+
+    /// <summary>
+    /// RPC method when player health reaches zero.
+    /// The player is in the RESCUE state. The player is able to recover
+    /// if your friend is able to recover you.
+    /// </summary>
+    [ClientRpc]
+    void RpcOnPlayerHealthZero()
+    {
+        DevLog.Log("Health", "The player health is zero... Changing color... syncing");
+
+        // Change the color of the player to reflect their "dead" state
+        GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+
+        // By setting the "isAlive" bool to false, we trigger
+        // the SyncVar hook in the CharacterState
+        playerStat.status = CharacterStatus.RESCUE;
     }
 }
