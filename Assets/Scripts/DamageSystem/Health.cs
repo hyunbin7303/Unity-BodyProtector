@@ -32,36 +32,23 @@ public class Health : NetworkBehaviour
     /// Apply damage to the enemy.
     /// </summary>
     /// <param name="amount">The amount of damage to apply to the enemy.</param>
-    public void EnemyTakeDamage(float amount/*, NetworkInstanceId attackerID*/)
+    public void EnemyTakeDamage(float amount, NetworkInstanceId attackerID)
     {
+        if (!isServer)
+            return;
+
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            //GameObject player = NetworkServer.FindLocalObject(attackerID); //The server will find the player that is registered to the ID we have passed it.
-            //if (player != null)
-            //{
-            //    Debug.Log("Found player object");
-            //    player.GetComponent<PlayerScore>().IncreaseScore(1);
-            //}
-            //else
-            //{
-            //    Debug.Log("Did not find player object");
-            //}
+            GameObject player = NetworkServer.FindLocalObject(attackerID); //The server will find the player that is registered to the ID we have passed it.
+            if (player != null)
+            {
+                player.GetComponent<PlayerScore>().IncreaseScore(1);
+            }
 
             currentHealth = 0;
             Destroy(gameObject);
             Debug.Log("Enemy is Dead!");
-        }
-        else
-        {
-            healthBar.sizeDelta = new Vector2(currentHealth, healthBar.sizeDelta.y);
-            if (hudHealthBar != null)
-            {
-                Debug.Log("NOT IN HERE!1");
-                // apply changes to the health HUD
-                hudHealthBar.value = CalculateHealth();
-                healthText.text = currentHealth.ToString("F0");
-            }
         }
     }
 
@@ -71,6 +58,10 @@ public class Health : NetworkBehaviour
     /// <param name="amount">The amount of damage to apply to the player.</param>
     public void PlayerTakeDamage(float amount)
     {
+        if (!isServer) {
+            return;
+        }
+
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -83,10 +74,9 @@ public class Health : NetworkBehaviour
         healthBar.sizeDelta = new Vector2(health, healthBar.sizeDelta.y);
         if (hudHealthBar != null)
         {
-            Debug.Log("NOT IN HERE!2");
             // apply changes to the health HUD
-            hudHealthBar.value = CalculateHealth();
-            healthText.text = currentHealth.ToString("F0");
+            hudHealthBar.value = health / maxHealth;
+            healthText.text = health.ToString("F0");
         }
     }
 

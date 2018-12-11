@@ -9,6 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerScore : NetworkBehaviour
 {
+    [SyncVar(hook = "OnChangeScore")]
     public int currentScore = 0;
     public TMP_Text killCountText;
 
@@ -19,16 +20,14 @@ public class PlayerScore : NetworkBehaviour
 
     public void IncreaseScore(int amount)
     {
-        if (!isLocalPlayer)
+        if (!isServer)
             return;
 
         currentScore += amount;
-        Debug.Log("JOHN CENA. Player score: " + currentScore);
-        SetText();
     }
 
-    public void SetText()
+    void OnChangeScore(int score)
     {
-        killCountText.text = currentScore.ToString();
+        killCountText.text = score.ToString();
     }
 }

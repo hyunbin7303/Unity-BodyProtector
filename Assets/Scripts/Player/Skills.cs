@@ -153,7 +153,7 @@ public class Skills : NetworkBehaviour
 
         //Fetch the NetworkIdentity component of the GameObject
         // and assign the owner to the bullet
-        //bullet.GetComponent<Bullet>().netId = GetComponent<NetworkIdentity>().netId;
+        bullet.GetComponent<Bullet>().ownerId = GetComponent<NetworkIdentity>().netId;
         // Add velocity to the bullet
         //bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6f;
 

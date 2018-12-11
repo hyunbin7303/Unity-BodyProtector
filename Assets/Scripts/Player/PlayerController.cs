@@ -6,10 +6,6 @@ using Varlab.Database.Domain;
 
 public class PlayerController : NetworkBehaviour
 {
-    // The [Command] attribute indicates that the following function will be called by the Client, but will be run on the Server.
-    [SyncVar]
-    private int Score;
-
     public GameObject capsule;
     public Texture2D menuIcon;
     public Text ScoreText;
@@ -21,15 +17,10 @@ public class PlayerController : NetworkBehaviour
 
     void Start ()
     {
+        health = GetComponent<Health>();
+
+        // TESTING
         var netId = GetComponent<NetworkIdentity>().netId;
-
-        Debug.Log("[PlayerController.cs] Network Id: " + netId);
-        if (isLocalPlayer)
-        {
-            Debug.Log("[PlayerController.cs] Is LocalPlayer for: " + netId);
-            health = GetComponent<Health>();
-        }
-
         tmpNetworkId = netId.ToString();
     }
 
@@ -39,8 +30,7 @@ public class PlayerController : NetworkBehaviour
          LocalPlayer is part of NetworkBehaviour and all scripts that derive from NetworkBehaviour will 
          understand the concept of a LocalPlayer.
          */
-        if (!isLocalPlayer)
-        {
+        if (!isLocalPlayer) {
             return;
         }
 
@@ -98,7 +88,7 @@ public class PlayerController : NetworkBehaviour
                 Debug.Log("GAME PLAYER DIED.");
 
                 GameManager.instance.playersAlive -= 1;
-                CmdPlayerDie();
+                RpcPlayerDie();
             }
         }
     }
@@ -111,6 +101,18 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void CmdPlayerDie()
     {
-        Destroy(this.gameObject);
+        //capsule.GetComponent<MeshRenderer>().material.color = Color.red;    // TEST: change player RED if dead
+        //Destroy(this.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcPlayerDie()
+    {
+        ChangePlayerColor(Color.red);
+    }
+
+    void ChangePlayerColor(Color newColor)
+    {
+        capsule.GetComponent<MeshRenderer>().material.color = newColor;
     }
 }
