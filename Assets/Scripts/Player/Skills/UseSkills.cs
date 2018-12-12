@@ -42,7 +42,7 @@ public class UseSkills : NetworkBehaviour
         IsSkill2On = Input.GetKeyDown(KeyCode.Alpha2);
         IsSkill3On = Input.GetKeyDown(KeyCode.Alpha3);
         IsAttackOn = Input.GetKeyDown(KeyCode.Space);
-        if (IsSkill1On || IsAttackOn)
+        if (IsSkill1On)
         {
             Debug.Log("SKILL 1 is selected");
             UseSpell(PlayerSkills[0].ID);
@@ -57,61 +57,67 @@ public class UseSkills : NetworkBehaviour
             Debug.Log("SKILL 3 is selected");
             UseSpell(PlayerSkills[2].ID);
         }
+
+        if (IsAttackOn)
+        {
+            CmdFireBall();
+        }
     }
 
     void OnGUI()
     {
-        //        if (!isLocalPlayer) {
-        //            return;
-        //        }
+        if (!isLocalPlayer)
+        {
+            return;
+        }
 
-        //#if UNITY_EDITOR
-        //        Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_1.png", typeof(Texture2D));
-        //        Texture2D t2 = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_2.png", typeof(Texture2D));
-        //        Texture2D t3 = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_3.png", typeof(Texture2D));
-        //#else
-        //        Texture2D t = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_1.png");
-        //        Texture2D t2 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_2.png");
-        //        Texture2D t3 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
-        //#endif
+#if UNITY_EDITOR
+        Texture2D t = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_1.png", typeof(Texture2D));
+        Texture2D t2 = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_2.png", typeof(Texture2D));
+        Texture2D t3 = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Textures/Skills/Elixir_3.png", typeof(Texture2D));
+#else
+                Texture2D t = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_1.png");
+                Texture2D t2 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_2.png");
+                Texture2D t3 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
+#endif
 
-        //        Rect rangeSkill1 = new Rect(100, Screen.height - 50, t.width - 20, t.height - 20);
-        //        Rect rangeSkill2 = new Rect(150, Screen.height - 50, t2.width - 20, t2.height - 20);
-        //        Rect rangeSkill3 = new Rect(200, Screen.height - 50, t3.width - 20, t3.height - 20);
-        //        if (GUI.Button(rangeSkill1, t))
-        //        {
-        //            UseSpell(PlayerSkills[0].ID);
-        //        }
-        //        if (GUI.Button(rangeSkill2, t2))
-        //        {
-        //            UseSpell(PlayerSkills[1].ID);
-        //        }
-        //        if (GUI.Button(rangeSkill3, t3))
-        //        {
-        //            UseSpell(PlayerSkills[2].ID);
-        //        }
+        Rect rangeSkill1 = new Rect(100, Screen.height - 50, t.width - 20, t.height - 20);
+        Rect rangeSkill2 = new Rect(150, Screen.height - 50, t2.width - 20, t2.height - 20);
+        Rect rangeSkill3 = new Rect(200, Screen.height - 50, t3.width - 20, t3.height - 20);
+        if (GUI.Button(rangeSkill1, t))
+        {
+            UseSpell(PlayerSkills[0].ID);
+        }
+        if (GUI.Button(rangeSkill2, t2))
+        {
+            UseSpell(PlayerSkills[1].ID);
+        }
+        if (GUI.Button(rangeSkill3, t3))
+        {
+            UseSpell(PlayerSkills[2].ID);
+        }
 
-        //if (rangeSkill1.Contains(Event.current.mousePosition))
-        //{
-        //    GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
-        //    GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
-        //        "SKILL NAME : " + PlayerSkills[0].skillname + "\n" +
-        //        "SKILL DESCRIPTION : " + PlayerSkills[0].Description + "\n");
-        //}
-        //        if (rangeSkill2.Contains(Event.current.mousePosition))
-        //        {
-        //            GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
-        //            GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
-        //                "SKILL NAME : " + PlayerSkills[1].skillname + "\n" +
-        //                "SKILL DESCRIPTION : " + PlayerSkills[1].Description + "\n");
-        //        }
-        //        if (rangeSkill3.Contains(Event.current.mousePosition))
-        //        {
-        //            GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
-        //            GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
-        //                "SKILL NAME : " + PlayerSkills[2].skillname + "\n" +
-        //                "SKILL DESCRIPTION : " + PlayerSkills[2].Description + "\n");
-        //        }
+        if (rangeSkill1.Contains(Event.current.mousePosition))
+        {
+            GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
+            GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
+                "SKILL NAME : " + PlayerSkills[0].skillname + "\n" +
+                "SKILL DESCRIPTION : " + PlayerSkills[0].Description + "\n");
+        }
+        if (rangeSkill2.Contains(Event.current.mousePosition))
+        {
+            GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
+            GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
+                "SKILL NAME : " + PlayerSkills[1].skillname + "\n" +
+                "SKILL DESCRIPTION : " + PlayerSkills[1].Description + "\n");
+        }
+        if (rangeSkill3.Contains(Event.current.mousePosition))
+        {
+            GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
+            GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
+                "SKILL NAME : " + PlayerSkills[2].skillname + "\n" +
+                "SKILL DESCRIPTION : " + PlayerSkills[2].Description + "\n");
+        }
     }
 
 private void UseSpell(int id)

@@ -68,6 +68,7 @@ public class SkillScriptable : ScriptableObject
         List<SkillScriptable>.Enumerator skills = Player.Playerskills.GetEnumerator();
         while (skills.MoveNext())
         {
+
             var CurrSkill = skills.Current;
             if (CurrSkill.name == name)
             {
@@ -100,6 +101,26 @@ public class SkillScriptable : ScriptableObject
                 Player.PlayerXP -= this.XPNeeded;
                 //add to the list of skills.
                 Player.Playerskills.Add(this);
+
+                Debug.Log("BEFORE SWITCH");
+                switch (this.ID)
+                {
+                    case 1:
+                        
+                        break;
+
+                    case 2:
+                        break;
+
+                    case 3:
+                        break;
+
+                    default:
+                        Debug.Log("BEFORE SWITCHDEFAULT");
+                        break;
+                }
+
+
                 return true;
             }
         }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
+  m_Name: Antibiotic2
+  m_EditorClassIdentifier: 
+  ID: 22
+  skillname: Antibiotic
+  Description: Antibiotic is used. Incrase 20 mana.
+  cooldown: 5
+  mana: 5
+  icon: {fileID: 21300008, guid: 27e521f391dac054088447636578c9e5, type: 3}
+  LevelNeeded: 2
+  XPNeeded: 100
+  AffectedAttributes:
+  - attribute: {fileID: 11400000, guid: 331573135dd4cc147891dee6ae81b391, type: 2}
+    amount: 20
+  - attribute: {fileID: 11400000, guid: c533d746d4e2cb545b06d6ac395c9f2b, type: 2}
+    amount: 5

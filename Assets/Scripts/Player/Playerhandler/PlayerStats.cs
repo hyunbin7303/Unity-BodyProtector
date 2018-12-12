@@ -9,6 +9,9 @@ public class PlayerStats : MonoBehaviour
     [Header("Main Player Stats")]
     public string PlayerName;
 
+    public int PlayerLevel = 1;
+    public int PlayerHP = 50;
+    public int PlayerPassiveSkill;
 
     [SerializeField]
     private int m_PlayerXP = 0;
@@ -23,8 +26,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public int PlayerLevel = 1;
-    public int PlayerHP = 50;
+
 
     [Header("Player Attributes")]
     public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
