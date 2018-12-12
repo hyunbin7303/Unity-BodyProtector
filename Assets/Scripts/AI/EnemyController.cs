@@ -7,6 +7,8 @@ public class EnemyController : NetworkBehaviour
 {
     private const float kDefaultSpeed = 2.0f;
 
+    public int enemyID = 0;
+
     [SyncVar]
     public float lookRadius = 10.0f;
     // The health of the enemy

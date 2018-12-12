@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
-  expireRate: 5
+  damageRate: 50
+  expireRate: 3
 --- !u!114 &114528085101782776
 MonoBehaviour:
   m_ObjectHideFlags: 1
