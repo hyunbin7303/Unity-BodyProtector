@@ -1111,6 +1111,7 @@ MonoBehaviour:
   ScoreText: {fileID: 0}
   health: {fileID: 0}
   tmpNetworkId: 
+  m_Canvas: {fileID: 0}
 --- !u!114 &114273161079138782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1615,32 +1616,38 @@ MonoBehaviour:
     skillname: fure
     Description: fsafds
     cooldown: 0
+    mana: 0
   - icon: {fileID: 0}
     ID: 0
     skillname: dsfdsf
     Description: sdfdsf
     cooldown: 0
+    mana: 0
   - icon: {fileID: 0}
     ID: 0
     skillname: 
     Description: 
     cooldown: 0
+    mana: 0
   PlayerSkills:
   - icon: {fileID: 0}
     ID: 0
     skillname: sdfds
     Description: sdfds
     cooldown: 0
+    mana: 0
   - icon: {fileID: 0}
     ID: 0
     skillname: sdfds
     Description: asfasf
     cooldown: 0
+    mana: 0
   - icon: {fileID: 0}
     ID: 0
     skillname: asdasd
     Description: asdasd
     cooldown: 0
+    mana: 0
   barsBackgroundTexture: {fileID: 2800000, guid: cbfa7a00299e1b14ebc34e46d5e08268,
     type: 3}
   bulletPrefab: {fileID: 1562989709728344, guid: cc3fe7fbc8f783049afd97500b4f30ce,
@@ -2125,8 +2132,8 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: e6aa7dfb68e127b4cb9a4f2e570b29f0, type: 2}
     amount: 10
   Playerskills:
-  - {fileID: 11400000, guid: 705252f06ec9e3a4fa1528b4bf520b55, type: 2}
-  - {fileID: 11400000, guid: 08acae82797de714181ab538e4d20194, type: 2}
+  - {fileID: 11400000, guid: e1da66609ff10ae46a99c1eb8ba57b87, type: 2}
+  - {fileID: 11400000, guid: fd29382a3d2c906428e0c091669a967c, type: 2}
 --- !u!114 &114986552548578370
 MonoBehaviour:
   m_ObjectHideFlags: 1

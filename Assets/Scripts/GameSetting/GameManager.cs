@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
         ENDSCREEN
     }
     public static GameManager instance = null;
-    private BoardManager boardScript;
  //   private SoundManager soundScript;
     private EnemyManager enemyScript;
     //private PlayerManager playScript;
@@ -57,7 +56,6 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        boardScript = GetComponent<BoardManager>();
      //   soundScript = GetComponent<SoundManager>();
         enemyScript = GetComponent<EnemyManager>();
         //playScript = GetComponent<PlayerManager>();
