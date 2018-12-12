@@ -53,6 +53,11 @@ public class PlayerController : NetworkBehaviour
                 m_Canvas.gameObject.SetActive(m_SeeCanvas);
             }
         }
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("K Button is pressed.");
+            // Display skill setttings.
+        }
     }
 
     void MovePlayer(float horizontal, float vertical)
