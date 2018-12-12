@@ -34,7 +34,20 @@ public class SkillScriptable : ScriptableObject
                 sd.skillLev.text = LevelNeeded.ToString();
         }
     }
+    //check if the player is able to get the skill
+    public bool CheckSkills(PlayerStats Player)
+    {
+        //check if player is the right level
+        if (Player.PlayerLevel < LevelNeeded)
+            return false;
 
+        //check if player has enough xp
+        if (Player.PlayerXP < XPNeeded)
+            return false;
+
+        //otherwise they can enable this skill
+        return true;
+    }
     public bool EnableSkill(PlayerStats Player)
     {
         List<SkillScriptable>.Enumerator skills = Player.Playerskills.GetEnumerator();
