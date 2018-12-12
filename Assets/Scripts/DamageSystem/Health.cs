@@ -17,12 +17,12 @@ public class Health : NetworkBehaviour
     public TMP_Text healthText;
 
     /// The Player's stat includes the name, health, etc.
-    private PlayerController playerStat;
+    private PlayerController thePlayer;
 
 
     void Start()
     {
-        playerStat = GetComponent<PlayerController>();
+        thePlayer = GetComponent<PlayerController>();
 
         if (isLocalPlayer)
         {
@@ -67,16 +67,22 @@ public class Health : NetworkBehaviour
             return;
         }
 
-        currentHealth -= amount;
+        //only take damage when the player is ALIVE
+        if (thePlayer.status == CharacterStatus.ALIVE) {
+            currentHealth -= amount;
+        }
+
         if (currentHealth <= 0)
         {
-            if (playerStat.status == CharacterStatus.ALIVE)
+            if (thePlayer.status == CharacterStatus.ALIVE)
             {
                 // Once the player's health is zero, we call upon
                 // all clients (and server) to sync data across network
+                //CmdOnPlayerHealthZero();
                 RpcOnPlayerHealthZero();
+                OnPlayerHealthZero();
+                currentHealth = 0;
             }
-            currentHealth = 0;
         }
     }
 
@@ -96,13 +102,24 @@ public class Health : NetworkBehaviour
         return currentHealth / maxHealth;
     }
 
+    
     /// <summary>
     /// RPC method when player health reaches zero.
-    /// The player is in the RESCUE state. The player is able to recover
-    /// if your friend is able to recover you.
+    /// Tell all other clients that the player has zero health
     /// </summary>
+    /// <remarks>
+    /// The player is in the RESCUE state
+    /// </remarks>
     [ClientRpc]
     void RpcOnPlayerHealthZero()
+    {
+        OnPlayerHealthZero();
+    }
+
+    /// <summary>
+    /// Methods occurs when player's health reaches/is zero.
+    /// </summary>
+    void OnPlayerHealthZero()
     {
         DevLog.Log("Health", "The player health is zero... Changing color... syncing");
 
@@ -111,6 +128,6 @@ public class Health : NetworkBehaviour
 
         // By setting the "isAlive" bool to false, we trigger
         // the SyncVar hook in the CharacterState
-        playerStat.status = CharacterStatus.RESCUE;
+        thePlayer.status = CharacterStatus.RESCUE;
     }
 }

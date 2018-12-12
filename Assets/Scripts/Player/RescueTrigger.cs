@@ -11,65 +11,66 @@ public class RescueTrigger : NetworkBehaviour
     [SerializeField]
     private PlayerController playerToRescue;
 
-    private string myNetId;
-    private NetworkInstanceId targetId;
-    //void Start()
-    //{
-    //    myNetId = gameObject.GetComponent<PlayerController>().tmpNetworkId;
-    //    targetId = NetworkInstanceId.Invalid;
+    //private string myNetId;
+    //private NetworkInstanceId targetId;
 
-    //    if (isLocalPlayer)
-    //    {
-    //        rescueButton.onClick.AddListener(delegate { CmdRescueButtonOnClick(); });
-    //        rescueButton.gameObject.SetActive(false);
-    //    }
-    //}
 
-    //void OnDisable()
-    //{
-    //    DevLog.Log("ReviveTrigger", "OnDisable executing");
-    //    rescueButton.onClick.RemoveListener(delegate { CmdRescueButtonOnClick(); });
-    //}
+    void Start()
+    {
+        //myNetId = gameObject.GetComponent<PlayerController>().tmpNetworkId;
+        //targetId = NetworkInstanceId.Invalid;
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        playerToRescue = other.GetComponent<PlayerController>();
-    //        // If the PLAYER i encounter is in a "RESCUE" state, therefore
-    //        // it means that i can attempt to revive the other person...
-    //        if (playerToRescue.characterState.status == CharacterStatus.RESCUE)
-    //        {
-    //            // DEBUG
-    //            targetId = other.GetComponent<NetworkIdentity>().netId;
+        if (isLocalPlayer)
+        {
+            rescueButton.onClick.AddListener(delegate { CmdRescueButtonOnClick(); });
+            rescueButton.gameObject.SetActive(false);
+        }
+    }
 
-    //            // When PLAYER1 (myself) enters the revive zone, we want to show the revive ui box
-    //            rescueButton.gameObject.SetActive(true);
+    void OnDisable()
+    {
+        DevLog.Log("ReviveTrigger", "OnDisable executing");
+        rescueButton.onClick.RemoveListener(delegate { CmdRescueButtonOnClick(); });
+    }
 
-    //            //DevLog.Log("ReviveTrigger", "Player id <" + myNetId + "> entered vicinity of <" + targetId.Value + ">");
-    //        }
-    //    }
-    //}
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerToRescue = other.GetComponent<PlayerController>();
+            // If the PLAYER i encounter is in a "RESCUE" state, therefore
+            // it means that i can attempt to revive the other person...
+            if (playerToRescue.status == CharacterStatus.RESCUE)
+            {
+                // DEBUG
+                //targetId = other.GetComponent<NetworkIdentity>().netId;
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        // If the PLAYER i encounter is in a "RESCUE" state, therefore
-    //        // it means that i can attempt to revive the other person...
-    //        if (playerToRescue != null && playerToRescue.characterState.status == CharacterStatus.RESCUE)
-    //        {
-    //            // DEBUG
-    //            targetId = other.GetComponent<NetworkIdentity>().netId;
+                // When PLAYER1 (myself) enters the revive zone, we want to show the revive ui box
+                rescueButton.gameObject.SetActive(true);
 
-    //            // When PLAYER1 (myself) enters the revive zone, we want to show the revive ui box
-    //            rescueButton.gameObject.SetActive(false);
+                //DevLog.Log("ReviveTrigger", "Player id <" + myNetId + "> entered vicinity of <" + targetId.Value + ">");
+            }
+        }
+    }
 
-    //            //DevLog.Log("ReviveTrigger", "Player id <" + myNetId + "> exited vicinity of <" + targetId.Value + ">");
-    //        }
-    //    }
-    //}
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // If the PLAYER i encounter is in a "RESCUE" state, therefore
+            // it means that i can attempt to revive the other person...
+            if (playerToRescue != null && playerToRescue.status == CharacterStatus.RESCUE)
+            {
+                // DEBUG
+                //targetId = other.GetComponent<NetworkIdentity>().netId;
 
+                // When PLAYER1 (myself) enters the revive zone, we want to show the revive ui box
+                rescueButton.gameObject.SetActive(false);
+
+                //DevLog.Log("ReviveTrigger", "Player id <" + myNetId + "> exited vicinity of <" + targetId.Value + ">");
+            }
+        }
+    }
 
     [Command]
     void CmdRescueButtonOnClick()

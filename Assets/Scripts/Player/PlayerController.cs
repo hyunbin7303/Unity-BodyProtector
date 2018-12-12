@@ -111,7 +111,7 @@ public class PlayerController : NetworkBehaviour
                 Debug.Log("GAME PLAYER DIED.");
 
                 GameManager.instance.playersAlive -= 1;
-                CmdPlayerDie();
+                //CmdPlayerDie();
             }
         }
     }

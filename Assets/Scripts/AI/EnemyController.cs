@@ -22,18 +22,16 @@ public class EnemyController : NetworkBehaviour
     public Vector3 direction;
     // How far away is the player from the NPC
     public float distance = 0.0f;
-    // What is the angle between the PC and NPC
-    public float angle = 0.0f;
-    // what is the field of view for our NPC?
-    public float fieldOfViewAngle = 360.0f;
-    // calculate the angle between PC and NPC
-    public float calculatedAngle;
 
     protected NavMeshAgent navMeshAgent;
     private SphereCollider col;
     private Transform target;
 
     void Awake()
+    {
+    }
+
+    void Start()
     {
         // get reference to nav mesh agent
         this.navMeshAgent = GetComponent<NavMeshAgent>();
@@ -42,10 +40,6 @@ public class EnemyController : NetworkBehaviour
         health = GetComponent<Health>();
         // Has the player been sighted?
         playerInSight = false;
-    }
-
-    void Start()
-    {
     }
 
     void Update()
@@ -77,9 +71,10 @@ public class EnemyController : NetworkBehaviour
             //var targetStatus = target.GetComponent<PlayerStats>().status;
             //if (targetStatus == CharacterStatus.ALIVE)
             //{
-                // Nearest target found, apply the distance calculations
-                // on the server and have the enemy follow the nearest player
-                CmdUpdateNetwork();
+            // Nearest target found, apply the distance calculations
+            // on the server and have the enemy follow the nearest player
+            //CmdUpdateNetwork();
+            UpdateNetwork();
             //}
             //else
             //{
@@ -88,12 +83,39 @@ public class EnemyController : NetworkBehaviour
         }
         else
         {
-            CmdStopEnemy();
+            //CmdStopEnemy();
+            StopEnemy();
         }
     }
 
     [Command]
     void CmdUpdateNetwork()
+    {
+        direction = target.position - transform.position;
+        distance = Vector3.Distance(target.position, transform.position);
+
+        if (navMeshAgent.speed <= 0.0f)
+        {
+            navMeshAgent.speed = speed;
+        }
+        if (distance <= lookRadius)
+        {
+            navMeshAgent.speed = speed;
+            // Move towards the target (player)
+            navMeshAgent.SetDestination(target.position);
+
+            // If the enemy is near to the player...
+            if (distance <= navMeshAgent.stoppingDistance)
+            {
+                // Attack the target
+
+                // Face the target
+                FaceTarget();
+            }
+        }
+    }
+
+    void UpdateNetwork()
     {
         direction = target.position - transform.position;
         distance = Vector3.Distance(target.position, transform.position);
@@ -125,6 +147,11 @@ public class EnemyController : NetworkBehaviour
     /// </summary>
     [Command]
     void CmdStopEnemy()
+    {
+        navMeshAgent.speed = 0.0f;
+    }
+
+    void StopEnemy()
     {
         navMeshAgent.speed = 0.0f;
     }
@@ -165,7 +192,6 @@ public class EnemyController : NetworkBehaviour
                     newTarget = potentialTarget.transform;  // Found the new target!
                 }
             }
-            // otherwise if no target was found, we return null...
         }
 
         return newTarget;
