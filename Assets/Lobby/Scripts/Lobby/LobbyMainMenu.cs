@@ -51,7 +51,7 @@ namespace Prototype.NetworkLobby
 
             lobbyManager.backDelegate = lobbyManager.StopServerClbk;
 
-            lobbyManager.SetServerInfo("Dedicated Server", lobbyManager.networkAddress);
+            lobbyManager.SetServerInfo("Dedicated Server", lobbyManager.GetIPAddress());
         }
 
         public void OnClickCreateMatchmakingGame()

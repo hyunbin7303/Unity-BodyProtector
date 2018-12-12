@@ -5,12 +5,14 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using System.Collections;
-
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace Prototype.NetworkLobby
 {
     public class LobbyManager : NetworkLobbyManager 
     {
+        private const string kDefaultHost = "localhost";
         static short MsgKicked = MsgType.Highest + 1;
 
         static public LobbyManager s_Singleton;
@@ -238,7 +240,8 @@ namespace Prototype.NetworkLobby
 
             ChangeTo(lobbyPanel);
             backDelegate = StopHostClbk;
-            SetServerInfo("Hosting", networkAddress);
+
+            SetServerInfo("Hosting", GetIPAddress());
         }
 
 		public override void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
@@ -416,6 +419,17 @@ namespace Prototype.NetworkLobby
         {
             ChangeTo(mainMenuPanel);
             infoPanel.Display("Client error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
+        }
+
+
+        // ----------------- Utility functions ------------------
+
+        public string GetIPAddress()
+        {
+            networkAddress = IPManager.GetIP(ADDRESSFAM.IPv4);
+            if (string.IsNullOrEmpty(networkAddress))
+                networkAddress = kDefaultHost;
+            return networkAddress;
         }
     }
 }
