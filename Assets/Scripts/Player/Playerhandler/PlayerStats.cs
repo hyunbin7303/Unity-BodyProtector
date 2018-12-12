@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public class PlayerStats : NetworkBehaviour
+public class PlayerStats : MonoBehaviour
 {
     [Header("Main Player Stats")]
     public string PlayerName;
@@ -25,9 +25,6 @@ public class PlayerStats : NetworkBehaviour
 
     public int PlayerLevel = 1;
     public int PlayerHP = 50;
-
-    [SyncVar(hook = "OnChangeStatus")]
-    public CharacterStatus status = CharacterStatus.ALIVE;
 
     [Header("Player Attributes")]
     public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
@@ -55,16 +52,5 @@ public class PlayerStats : NetworkBehaviour
     public void UpdateXP(int amount)
     {
         PlayerXP += amount;
-    }
-
-    /// <summary>
-    /// SyncHook method for sync character status.
-    /// Is called when the CharacterStatus is changed.
-    /// </summary>
-    /// <param name="status"></param>
-    void OnChangeStatus(CharacterStatus status)
-    {
-        DevLog.Log("CharacterState", "Player id <" + GetComponent<NetworkIdentity>().netId + "> status = " + status.ToString());
-        this.status = status;
     }
 }

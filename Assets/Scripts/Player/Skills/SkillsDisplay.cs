@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillsDisplay : MonoBehaviour {
+public class SkillsDisplay : MonoBehaviour
+{
     public SkillScriptable skillScriptable;
-    public Text skillName;
+
+    public TMP_Text skillName;
     public Text skilLDescription;
     public Image skillIcon;
-    public Text skillLev;
-    public Text XPneeded;
-    public Text skillAttribute;
-    public Text skillAttrAmount;
+    public TMP_Text skillLev;
+    public TMP_Text XPNeeded;
+    public TMP_Text skillAttribute;
+    public TMP_Text skillAttrAmount;
     [SerializeField]
     private PlayerStats m_PlayerHandler;
 
+
     void Start()
     {
-        m_PlayerHandler = this.GetComponentInParent<PlayerController>().playerStat;
+        m_PlayerHandler = this.GetComponentInParent<PlayerHandler>().Player;
         //listener for the XP change
         m_PlayerHandler.onXPChange += ReactToChange;
         //listener for the Level change
@@ -52,6 +56,7 @@ public class SkillsDisplay : MonoBehaviour {
     {
         EnableSkills();
     }
+
     public void GetSkill()
     {
         if (skillScriptable.GetSkill(m_PlayerHandler))
@@ -59,9 +64,11 @@ public class SkillsDisplay : MonoBehaviour {
             TurnOnSkillIcon();
         }
     }
+
     //Turn on the Skill Icon - stop it from being clickable and disable the UI elements that make it change colour
     private void TurnOnSkillIcon()
     {
+        Debug.Log("TurnOnSkillIcon. Turning on the skill");
         this.GetComponent<Button>().interactable = false;
         this.transform.Find("IconParent").Find("Available").gameObject.SetActive(false);
         this.transform.Find("IconParent").Find("Disabled").gameObject.SetActive(false);
@@ -80,5 +87,4 @@ public class SkillsDisplay : MonoBehaviour {
     {
         EnableSkills();
     }
-
 }

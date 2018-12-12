@@ -16,24 +16,38 @@ public class SkillScriptable : ScriptableObject
     public Sprite icon;
     public int LevelNeeded;
     public int XPNeeded;
+
     public List<PlayerAttributes> AffectedAttributes = new List<PlayerAttributes>();
 
 
     public void SetValues(GameObject skillDisplayObj, PlayerStats Player)
     {
-
+        // This is how we initialize the UI text
         if (skillDisplayObj)
         {
             SkillsDisplay sd = skillDisplayObj.GetComponent<SkillsDisplay>();
             sd.skillName.text = name;
+
             if (sd.skilLDescription)
                 sd.skilLDescription.text = Description;
+
             if (sd.skillIcon)
                 sd.skillIcon.sprite = icon;
+
             if (sd.skillLev)
                 sd.skillLev.text = LevelNeeded.ToString();
+
+            if (sd.XPNeeded)
+                sd.XPNeeded.text = XPNeeded.ToString();
+
+            if (sd.skillAttribute)
+                sd.skillAttribute.text = AffectedAttributes[0].attribute.ToString();
+
+            if (sd.skillAttrAmount)
+                sd.skillAttrAmount.text = "+" + AffectedAttributes[0].amount.ToString();
         }
     }
+
     //check if the player is able to get the skill
     public bool CheckSkills(PlayerStats Player)
     {
@@ -48,6 +62,7 @@ public class SkillScriptable : ScriptableObject
         //otherwise they can enable this skill
         return true;
     }
+
     public bool EnableSkill(PlayerStats Player)
     {
         List<SkillScriptable>.Enumerator skills = Player.Playerskills.GetEnumerator();
@@ -77,7 +92,6 @@ public class SkillScriptable : ScriptableObject
                     PlayerAttr.Current.amount += attributes.Current.amount;
                     // mark that an attribute was updated.
                     i++;
-
                 }
             }
             if (i > 0)

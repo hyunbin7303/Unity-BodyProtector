@@ -1,5 +1,6 @@
 ﻿[System.Serializable]
-public class PlayerAttributes  {
+public class PlayerAttributes
+{
     public Attributes attribute;
     public int amount;
     public PlayerAttributes(Attributes attribute, int amount)

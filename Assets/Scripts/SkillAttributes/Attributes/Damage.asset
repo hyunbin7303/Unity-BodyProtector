@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdfa9131bbe9f1742ad15e5998b2c96e, type: 3}
-  m_Name: Att3
+  m_Name: Damage
   m_EditorClassIdentifier: 
-  Description: hahaha
-  Thumbnail: {fileID: 21300000, guid: 7e838e588cfa3a54abe8ea22f5458286, type: 3}
+  Description: asdf
+  Thumbnail: {fileID: 21300000, guid: 6aa08ad34f2e9d248ba3e5efe3b915f4, type: 3}

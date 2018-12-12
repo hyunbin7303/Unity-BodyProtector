@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Name: Vaccine1
   m_EditorClassIdentifier: 
   ID: 1
-  skillname: Vacchine-H1
-  Description: Using vacchine 1
+  skillname: Vaccine-H1
+  Description: A weak vaccine
   cooldown: 5
   mana: 10
   icon: {fileID: 21300000, guid: 883b871fd1d51454a8c429b085190938, type: 3}
-  LevelNeeded: 0
-  XPNeeded: 0
-  AffectedAttributes: []
+  LevelNeeded: 1
+  XPNeeded: 10
+  AffectedAttributes:
+  - attribute: {fileID: 11400000, guid: 331573135dd4cc147891dee6ae81b391, type: 2}
+    amount: 1

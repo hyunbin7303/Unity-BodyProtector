@@ -9,6 +9,8 @@ public class PlayerController : NetworkBehaviour
 {
     public GameObject capsule;
     public PlayerStats playerStat;
+    [SyncVar(hook = "OnChangeStatus")]
+    public CharacterStatus status = CharacterStatus.ALIVE;
 
     public Texture2D menuIcon;
     public Text ScoreText;
@@ -130,7 +132,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdOnPlayerRescue()
     {
         // Set the status of the character to ALIVE
-        playerStat.status = CharacterStatus.ALIVE;
+        this.status = CharacterStatus.ALIVE;
         // Restore the health of the "rescued" player to full
         // SyncVar will sync the health bar for all clients to see
         health.currentHealth = Health.maxHealth;
@@ -163,5 +165,16 @@ public class PlayerController : NetworkBehaviour
     void TargetOnPlayerRescue(NetworkConnection conn)
     {
         GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+    }
+
+    /// <summary>
+    /// SyncHook method for sync character status.
+    /// Is called when the CharacterStatus is changed.
+    /// </summary>
+    /// <param name="status"></param>
+    void OnChangeStatus(CharacterStatus status)
+    {
+        DevLog.Log("CharacterState", "Player id <" + GetComponent<NetworkIdentity>().netId + "> status = " + status.ToString());
+        this.status = status;
     }
 }

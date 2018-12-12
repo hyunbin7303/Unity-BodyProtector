@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Vaccine2
   m_EditorClassIdentifier: 
   ID: 2
-  skillname: Vacccccc
-  Description: aaa
+  skillname: Vaccine-H2
+  Description: A more powerful vaccine
   cooldown: 10
   mana: 5
   icon: {fileID: 21300000, guid: 7e838e588cfa3a54abe8ea22f5458286, type: 3}
