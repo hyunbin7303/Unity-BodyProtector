@@ -23,7 +23,6 @@ public class Health : NetworkBehaviour
     void Start()
     {
         thePlayer = GetComponent<PlayerController>();
-
         if (isLocalPlayer)
         {
             if (hudHealthBar != null)
@@ -48,7 +47,9 @@ public class Health : NetworkBehaviour
             GameObject player = NetworkServer.FindLocalObject(attackerID); //The server will find the player that is registered to the ID we have passed it.
             if (player != null)
             {
+                player.GetComponent<PlayerStats>().IncreaseXP(10);
                 player.GetComponent<PlayerScore>().IncreaseScore(1);
+                Debug.Log("Player Experience : " + player.GetComponent<PlayerStats>().CurrentXP);
             }
 
             currentHealth = 0;

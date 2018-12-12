@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-/// <summary>
-/// 
-/// </summary>
+
 public class PlayerScore : NetworkBehaviour
 {
     [SyncVar(hook = "OnChangeScore")]
     public int currentScore = 0;
     public TMP_Text killCountText;
+
 
     private void Start()
     {
@@ -25,7 +24,6 @@ public class PlayerScore : NetworkBehaviour
 
         currentScore += amount;
     }
-
     void OnChangeScore(int score)
     {
         killCountText.text = score.ToString();

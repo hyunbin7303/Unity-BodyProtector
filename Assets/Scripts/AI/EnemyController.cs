@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class EnemyController : NetworkBehaviour
 {
+    public EnemyStats enemyStats;
     private const float kDefaultSpeed = 2.0f;
 
     public int enemyID = 0;

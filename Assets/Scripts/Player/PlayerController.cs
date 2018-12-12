@@ -44,7 +44,6 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-
         if (Input.GetKeyDown(KeyCode.K))
         {
             ToggleSkillMenu();

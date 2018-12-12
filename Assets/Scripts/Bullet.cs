@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public float expireRate;
     private float currentTimer;
 
-
+    public PlayerStats playerStats;
     void FixedUpdate()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
@@ -38,7 +38,11 @@ public class Bullet : MonoBehaviour
 
     public void DealDamageToEnemy(GameObject otherObject)
     {
-        DevLog.Log("Bullet", "Player with id <" + ownerId.ToString() + "> dealt damage to enemy");
-        otherObject.GetComponent<Health>().EnemyTakeDamage(50.0f, ownerId);
+        GameObject player = NetworkServer.FindLocalObject(ownerId);
+        damageRate = player.GetComponent<PlayerStats>().Damage;
+        DevLog.Log("Bullet", "Player with id <" + ownerId.ToString() + "> dealt damage to enemy with " + damageRate);
+        otherObject.GetComponent<Health>().EnemyTakeDamage(damageRate, ownerId);
     }
+
+
 }
