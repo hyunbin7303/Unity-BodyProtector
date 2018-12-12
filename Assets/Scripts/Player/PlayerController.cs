@@ -22,16 +22,16 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField]
     private Canvas m_Canvas;
-    private bool m_SeeCanvas;
+    private bool m_SeeCanvas = false;
 
     void Start ()
     {
         health = GetComponent<Health>();
         playerStat = GetComponent<PlayerStats>();
+        m_Canvas.gameObject.SetActive(m_SeeCanvas);
 
         // TESTING
-        var netId = GetComponent<NetworkIdentity>().netId;
-        tmpNetworkId = netId.ToString();
+        tmpNetworkId = GetComponent<NetworkIdentity>().netId.ToString();
     }
 
     void Update ()
@@ -44,24 +44,35 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
-        MovePlayer(x, z);
+
         if (Input.GetKeyDown(KeyCode.K))
         {
-            if (m_Canvas)
-            {
-                m_SeeCanvas = !m_SeeCanvas;
-                m_Canvas.gameObject.SetActive(m_SeeCanvas);
-            }
+            ToggleSkillMenu();
         }
 
+        // ----
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+
+        MovePlayer(x, z);
     }
 
     void MovePlayer(float horizontal, float vertical)
     {
         transform.Rotate(0, horizontal, 0);
         transform.Translate(0, 0, vertical);
+    }
+
+    /// <summary>
+    /// Opens the Skill Menu UI.
+    /// </summary>
+    void ToggleSkillMenu()
+    {
+        if (m_Canvas)
+        {
+            m_SeeCanvas = !m_SeeCanvas;
+            m_Canvas.gameObject.SetActive(m_SeeCanvas);
+        }
     }
 
     // This method is used for assigning color to the main character that player is playing.

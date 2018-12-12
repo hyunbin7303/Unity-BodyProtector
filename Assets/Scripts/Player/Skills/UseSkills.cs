@@ -160,13 +160,13 @@ private void UseSpell(int id)
         //Fetch the NetworkIdentity component of the GameObject
         // and assign the owner to the bullet
         bullet.GetComponent<Bullet>().ownerId = GetComponent<NetworkIdentity>().netId;
+        //float destroyTime = bullet.GetComponent<Bullet>().expireRate;
         // Add velocity to the bullet
         //bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6f;
 
         //bullet.GetComponent<Bullet>().damage = ;
         // Destroy the bullet after 2 seconds
-        //Destroy(bullet, 5.0f);
-        //NetworkServer.Spawn(bullet);
-        NetworkServer.SpawnWithClientAuthority(bullet, connectionToClient);
+        //Destroy(bullet, destroyTime);
+        NetworkServer.Spawn(bullet);
     }
 }
