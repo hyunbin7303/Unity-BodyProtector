@@ -152,7 +152,7 @@ public class EnemyController : NetworkBehaviour
         foreach (GameObject potentialTarget in targets)
         {
             // The enemy only follows the player if they are ALIVE
-            var targetStatus = potentialTarget.GetComponent<PlayerStats>().status;
+            var targetStatus = potentialTarget.GetComponent<PlayerController>().status;
             if (targetStatus == CharacterStatus.ALIVE)
             {
                 Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;

@@ -17,12 +17,12 @@ public class Health : NetworkBehaviour
     public TMP_Text healthText;
 
     /// The Player's stat includes the name, health, etc.
-    private PlayerStats playerStat;
+    private PlayerController playerStat;
 
 
     void Start()
     {
-        playerStat = GetComponent<PlayerStats>();
+        playerStat = GetComponent<PlayerController>();
 
         if (isLocalPlayer)
         {
