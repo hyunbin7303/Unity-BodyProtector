@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4038138879877706}
   - component: {fileID: 114651401341759942}
-  - component: {fileID: 114774207325784860}
   - component: {fileID: 114375058884672130}
   - component: {fileID: 114996755674685068}
   m_Layer: 0
@@ -76,17 +75,6 @@ MonoBehaviour:
   maximumEnemyLimit: 35
   remainingEnemies: 0
   enableEnemySpawning: 0
---- !u!114 &114774207325784860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1310541393355528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aebf7bce0816d0b4a871756c05a40909, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114996755674685068
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -24,7 +24,6 @@ public class EnemyController : NetworkBehaviour
     public float distance = 0.0f;
 
     protected NavMeshAgent navMeshAgent;
-    private SphereCollider col;
     private Transform target;
 
     void Awake()
@@ -36,7 +35,6 @@ public class EnemyController : NetworkBehaviour
         // get reference to nav mesh agent
         this.navMeshAgent = GetComponent<NavMeshAgent>();
         // reference to the sphere collider
-        this.col = GetComponent<SphereCollider>() as SphereCollider;
         health = GetComponent<Health>();
         // Has the player been sighted?
         playerInSight = false;
