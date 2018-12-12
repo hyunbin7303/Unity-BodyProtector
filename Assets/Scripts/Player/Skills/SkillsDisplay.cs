@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SkillsDisplay : MonoBehaviour
 {
     public SkillScriptable skillScriptable;
-
     public TMP_Text skillName;
     public Text skilLDescription;
     public Image skillIcon;
@@ -21,7 +20,7 @@ public class SkillsDisplay : MonoBehaviour
 
     void Start()
     {
-        m_PlayerHandler = this.GetComponentInParent<PlayerHandler>().Player;
+        m_PlayerHandler = this.GetComponentInParent<PlayerController>().playerStat;
         //listener for the XP change
         m_PlayerHandler.onXPChange += ReactToChange;
         //listener for the Level change
@@ -59,8 +58,10 @@ public class SkillsDisplay : MonoBehaviour
 
     public void GetSkill()
     {
+        Debug.Log("GET SKILL CLICKED.");
         if (skillScriptable.GetSkill(m_PlayerHandler))
         {
+            Debug.Log("ACCEPETABLE FOR GRET SKILL");
             TurnOnSkillIcon();
         }
     }

@@ -9,14 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
-  m_Name: Vaccine2
+  m_Name: Antibiotic
   m_EditorClassIdentifier: 
-  ID: 2
-  skillname: Vaccine-H2
-  Description: A more powerful vaccine
-  cooldown: 10
-  mana: 5
-  icon: {fileID: 21300000, guid: 7e838e588cfa3a54abe8ea22f5458286, type: 3}
-  LevelNeeded: 0
+  ID: 3
+  skillname: Antibiotic is used. Incrase 10 mana.
+  Description: Antibiotic Use.
+  cooldown: 15
+  mana: 20
+  icon: {fileID: 21300000, guid: a371213f637444c958089900240cc68a, type: 3}
+  LevelNeeded: 1
   XPNeeded: 0
-  AffectedAttributes: []
+  AffectedAttributes:
+  - attribute: {fileID: 11400000, guid: 331573135dd4cc147891dee6ae81b391, type: 2}
+    amount: 10

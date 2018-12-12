@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         MovePlayer(x, z);
-        if (Input.GetKeyDown("tab"))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             if (m_Canvas)
             {
@@ -55,11 +55,7 @@ public class PlayerController : NetworkBehaviour
                 m_Canvas.gameObject.SetActive(m_SeeCanvas);
             }
         }
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("K Button is pressed.");
-            // Display skill setttings.
-        }
+
     }
 
     void MovePlayer(float horizontal, float vertical)
