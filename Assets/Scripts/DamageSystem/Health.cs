@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using Messyspace;
+using Prototype.NetworkLobby;
 
 public class Health : NetworkBehaviour
 {
@@ -55,6 +56,7 @@ public class Health : NetworkBehaviour
             currentHealth = 0;
             Destroy(gameObject);
             Debug.Log("Enemy is Dead!");
+            LobbyManager.s_Singleton.OnEnemyNumberModified(-1); // decrease remaining amount of enemies
         }
     }
 
@@ -83,6 +85,11 @@ public class Health : NetworkBehaviour
                 RpcOnPlayerHealthZero();
                 OnPlayerHealthZero();
                 currentHealth = 0;
+
+                // BEFORE changing the state of the current player, we want to
+                // decrease the players that are alive...
+                LobbyManager.s_Singleton.DecreasePlayerAlive(thePlayer.myPlayerID, -1);
+                LobbyManager.s_Singleton.ChangePlayerState(thePlayer.myPlayerID, "DEAD");
             }
         }
     }

@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
     public Text ScoreText;
     public Health health;
 
+    public string myPlayerID;   // assigned in the network manager
     public string tmpNetworkId;
 
     //public Varlab.Database.Domain.Account acc; 
@@ -115,8 +116,6 @@ public class PlayerController : NetworkBehaviour
             if (health.currentHealth <= 0)
             {
                 Debug.Log("GAME PLAYER DIED.");
-
-                GameManager.instance.playersAlive -= 1;
                 //CmdPlayerDie();
             }
         }
