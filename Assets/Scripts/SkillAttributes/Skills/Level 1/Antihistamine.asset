@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
   m_Name: Antihistamine
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 5
   skillname: Anithistamine
   Description: Antihistamines can give relief when a person has nasal cognestion,
     sneezing or hives.

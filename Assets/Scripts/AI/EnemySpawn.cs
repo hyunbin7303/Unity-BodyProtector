@@ -15,7 +15,7 @@ public class EnemySpawn : NetworkBehaviour
     public GameObject enemy;
 
     [Tooltip("The time between spawning an enemy.")]
-    public float spawnTime = 3f;
+    public float spawnTime;
     public Transform[] spawnPoints;
 
     private bool _enableSpawning;

@@ -3,22 +3,22 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0e34ea08ef52e24299f26d8715b6155, type: 3}
+  m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
   m_Name: SpeicalSkill
   m_EditorClassIdentifier: 
-  Description: Special Skill Shoot!!!
-  icon: {fileID: 21300000, guid: 1a621454d016e4865b39248c425163bf, type: 3}
+  ID: 31
+  skillname: Special Skill
+  Description: THis is special Skill.
+  cooldown: 20
+  mana: 5
+  icon: {fileID: 21300000, guid: 7bd39cba378e14f9197bcf68374fb122, type: 3}
   LevelNeeded: 3
-  XPNeeded: 40
+  XPNeeded: 20
   AffectedAttributes:
-  - attribute: {fileID: 11400000, guid: 2afe9dde13832864eb4c5dfbe4916648, type: 2}
-    amount: 10
-  - attribute: {fileID: 11400000, guid: 0a91cc5c3d577454895117f45c17d729, type: 2}
+  - attribute: {fileID: 11400000, guid: 331573135dd4cc147891dee6ae81b391, type: 2}
     amount: 20
-  - attribute: {fileID: 11400000, guid: 6a1f267ca7884e34e847af8b941bb245, type: 2}
-    amount: 40

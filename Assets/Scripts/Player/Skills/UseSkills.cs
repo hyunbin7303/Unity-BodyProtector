@@ -9,7 +9,9 @@ public class UseSkills : NetworkBehaviour
     public skill[] allSkills;
     public skill[] PlayerSkills;
     public Texture2D barsBackgroundTexture;
-    public GameObject bulletPrefab;
+    public GameObject bulletFirePrefab;
+    public GameObject bulletWaterPrefab;
+    public GameObject SpreadBallPrefab;
     public Transform bulletSpawn;
 
     private bool IsSkill1On;
@@ -26,6 +28,7 @@ public class UseSkills : NetworkBehaviour
             PlayerSkills[i].ID = allSkills[i].ID;
             PlayerSkills[i].icon = allSkills[i].icon;
             PlayerSkills[i].skillname = allSkills[i].skillname;
+            PlayerSkills[i].cooldown = allSkills[i].cooldown;
             PlayerSkills[i].Description = allSkills[i].Description;
         }
     }
@@ -129,10 +132,12 @@ private void UseSpell(int id)
                 CmdFireBall();
                 break;
             case 2:
-                Debug.Log("SKill 2 is USED");
+           //     SoundManager.instance.PlaySound("Water");
+                CmdWaterBall();
                 break;
             case 3:
-                Debug.Log("SKill 3 is USED");
+                //SoundManager.instance.PlaySound("Spread");
+                CmdThrowSkills();
                 break;
             case 4:
                 Debug.Log("SKill 4 is USED");
@@ -153,7 +158,7 @@ private void UseSpell(int id)
     {
         // Create the Bullet from the Bullet Prefab
         var bullet = (GameObject)Instantiate(
-            bulletPrefab,
+            bulletFirePrefab,
             bulletSpawn.position,
             bulletSpawn.rotation);
 
@@ -167,6 +172,28 @@ private void UseSpell(int id)
         //bullet.GetComponent<Bullet>().damage = ;
         // Destroy the bullet after 2 seconds
         //Destroy(bullet, destroyTime);
+        NetworkServer.Spawn(bullet);
+    }
+
+    [Command]
+    private void CmdWaterBall()
+    {
+        // Create the Bullet from the Bullet Prefab
+        var bullet = Instantiate(
+            bulletWaterPrefab,
+            bulletSpawn.position,
+            bulletSpawn.rotation);
+        bullet.GetComponent<Bullet>().ownerId = GetComponent<NetworkIdentity>().netId;
+        NetworkServer.Spawn(bullet);
+    }
+
+    [Command]
+    private void CmdThrowSkills()
+    {
+        // Create the Bullet from the Bullet Prefab
+        GameObject bullet = Instantiate( SpreadBallPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.forward * 10.0f, ForceMode.Impulse);
+        bullet.GetComponent<Bullet>().ownerId = GetComponent<NetworkIdentity>().netId;
         NetworkServer.Spawn(bullet);
     }
 }

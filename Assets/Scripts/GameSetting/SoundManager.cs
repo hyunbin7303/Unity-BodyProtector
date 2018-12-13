@@ -5,9 +5,11 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     public static SoundManager instance = null;
-    public static AudioClip AttackSound;
+    public static AudioClip FireSound;
     public static AudioClip EnemyHitSound;
     public static AudioClip basicSound;
+
+    public static AudioClip WaterSound;
     static AudioSource source;
     void Awake()
     {
@@ -31,7 +33,8 @@ public class SoundManager : MonoBehaviour {
     void Start()
     {
 
-        AttackSound = Resources.Load<AudioClip>("Fire");
+        FireSound = Resources.Load<AudioClip>("Fire");
+        WaterSound = Resources.Load<AudioClip>("Water");
         source = GetComponent<AudioSource>();
     }
 
@@ -49,7 +52,8 @@ public class SoundManager : MonoBehaviour {
     public void PlaySound(string clip)
     {
 
-           source.PlayOneShot(AttackSound);
-
+        source.PlayOneShot(FireSound);
+        source.PlayOneShot(WaterSound);       
+            
     }
 }

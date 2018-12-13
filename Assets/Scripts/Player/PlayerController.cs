@@ -107,6 +107,7 @@ public class PlayerController : NetworkBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Detect enemy collision with character.");
@@ -120,6 +121,16 @@ public class PlayerController : NetworkBehaviour
                 //CmdPlayerDie();
             }
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            Debug.Log("Character Area enter checking");
+            health.ApplySpikeDamage(other.gameObject);
+        }
+
     }
 
 

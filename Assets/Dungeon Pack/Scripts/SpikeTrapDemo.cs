@@ -7,7 +7,7 @@ public class SpikeTrapDemo : MonoBehaviour {
     //This script goes on the SpikeTrap prefab;
 
     public Animator spikeTrapAnim; //Animator for the SpikeTrap;
-
+    public float AttackDamage = 20f;
     // Use this for initialization
     void Awake()
     {
@@ -23,11 +23,11 @@ public class SpikeTrapDemo : MonoBehaviour {
         //play open animation;
         spikeTrapAnim.SetTrigger("open");
         //wait 2 seconds;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         //play close animation;
         spikeTrapAnim.SetTrigger("close");
         //wait 2 seconds;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         //Do it again;
         StartCoroutine(OpenCloseTrap());
 

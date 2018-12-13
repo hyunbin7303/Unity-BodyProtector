@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Player.Skills;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,8 +57,8 @@ public class SkillScriptable : ScriptableObject
             return false;
 
         //check if player has enough xp
-        if (Player.PlayerXP < XPNeeded)
-            return false;
+        //if (Player.PlayerXP < XPNeeded)
+        //    return false;
 
         //otherwise they can enable this skill
         return true;
@@ -98,21 +99,43 @@ public class SkillScriptable : ScriptableObject
             if (i > 0)
             {
                 //reduce the XP from the Player.
-                Player.PlayerXP -= this.XPNeeded;
+             //   Player.PlayerXP -= this.XPNeeded;
                 //add to the list of skills.
                 Player.Playerskills.Add(this);
 
                 Debug.Log("BEFORE SWITCH");
                 switch (this.ID)
                 {
-                    case 1:
-                        
+                    case (int)SkillNumEnum.Vaccine1:
+                        Debug.Log("CLICKED NUMBER 1");
+                        //  Player.Playerskills.
+                     //   PlayerAttr.Current.amount;
+                     // Skill Setting SHOULD BE DONE. NUMBER IS ONLY 10? 
+                        Player.IncreaseDamage(10f);
                         break;
 
-                    case 2:
+                    case (int)SkillNumEnum.Adrenaline:
+                        Debug.Log("CLICKED NUMBER 2");
+                        Player.IncreaseSpeed(5f);
                         break;
 
-                    case 3:
+                    case (int)SkillNumEnum.Antibiotic:
+                        Debug.Log("CLICKED NUMBER 3");
+                        Player.IncreaseValue(10f);
+                        break;
+
+                    case (int)SkillNumEnum.Adrenaline2:
+                        Debug.Log("CLICKED ADRENALINE 2");
+                        Player.IncreaseSpeed(10f);
+                        break;
+
+                    case (int)SkillNumEnum.Antibiotic2:
+                        Debug.Log("CLICKED ANTIBIOTIC2");
+
+                        break;
+
+                    case (int)SkillNumEnum.SpecialSkill:
+                        Debug.Log("CLICKED SPEICIAL SKILL");
                         break;
 
                     default:

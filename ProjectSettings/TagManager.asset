@@ -12,6 +12,8 @@ TagManager:
   - IPAddressTag
   - HUD
   - EnemySpawner
+  - EnemyBoss
+  - Trap
   layers:
   - Default
   - TransparentFX
