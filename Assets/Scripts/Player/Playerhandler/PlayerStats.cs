@@ -30,17 +30,21 @@ public class PlayerStats : NetworkBehaviour
     public int PlayerXP_Full = 100;
     public int CurrentXP = 0;
     public RectTransform ExBar;
-    public Slider hudExBar;
+    public RectTransform ExBarFull; 
     public TMP_Text ExText;
-
-
     private bool m_SeeInfoCanvas = false;
+
+    void OnExpGain()
+    {
+        float ExPercent = Mathf.Clamp((float)CurrentXP / (float)PlayerXP_Full, 0f, 1f);
+        float newRightOffset = -ExBar.rect.width + ExBar.rect.width * ExPercent;
+        ExBarFull.offsetMax = new Vector2(newRightOffset, ExBarFull.offsetMax.y);
+        ExText.text = string.Format("{0}  /  {1} ", CurrentXP, PlayerXP_Full); 
+    } 
+
     private void Start()
     {
-        if(hudExBar != null)
-        {
-            hudExBar.value = CalculateEx();
-        }
+
         levelText.text = PlayerLevel.ToString();
         DamageText.text = Damage.ToString();
         SpeedText.text = Speed.ToString();
@@ -78,6 +82,7 @@ public class PlayerStats : NetworkBehaviour
             PlayerXP_Full += 100;
             CurrentXP = 0;
         }
+        OnExpGain();
         Debug.Log("Current XP Report : " + CurrentXP);
     }
 
@@ -111,22 +116,13 @@ public class PlayerStats : NetworkBehaviour
         PlayerXP += amount;
     }
 
-
     public IEnumerator RemoveAfterSeconds(int seconds)
     {
         yield return new WaitForSeconds(seconds);
         m_InfoCanvas.gameObject.SetActive(false);
     }
 
-    void onChangeEx(int experience)
-    {
-        ExBar.sizeDelta = new Vector2(experience, ExBar.sizeDelta.y);
-        if(ExBar != null)
-        {
-            hudExBar.value = experience / PlayerXP_Full;
-            ExText.text = experience.ToString("F0");
-        }
-    }
+
     float CalculateEx()
     {
         return CurrentXP / PlayerXP_Full;

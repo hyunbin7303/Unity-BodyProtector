@@ -84,9 +84,9 @@ public class UseSkills : NetworkBehaviour
                 Texture2D t3 = Resources.Load<Texture2D>("Assets/Textures/Skills/Elixir_3.png");
 #endif
 
-        Rect rangeSkill1 = new Rect(100, Screen.height - 50, t.width - 20, t.height - 20);
-        Rect rangeSkill2 = new Rect(150, Screen.height - 50, t2.width - 20, t2.height - 20);
-        Rect rangeSkill3 = new Rect(200, Screen.height - 50, t3.width - 20, t3.height - 20);
+        Rect rangeSkill1 = new Rect(60, Screen.height - 80, t.width - 20, t.height - 20);
+        Rect rangeSkill2 = new Rect(110, Screen.height - 80, t2.width - 20, t2.height - 20);
+        Rect rangeSkill3 = new Rect(160, Screen.height - 80, t3.width - 20, t3.height - 20);
         if (GUI.Button(rangeSkill1, t))
         {
             UseSpell(PlayerSkills[0].ID);
@@ -105,21 +105,24 @@ public class UseSkills : NetworkBehaviour
             GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
             GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
                 "SKILL NAME : " + PlayerSkills[0].skillname + "\n" +
-                "SKILL DESCRIPTION : " + PlayerSkills[0].Description + "\n");
+                "SKILL DESCRIPTION : " + PlayerSkills[0].Description + "\n" + 
+                "SKILL COOLDOWN : " + PlayerSkills[0].cooldown + "\n");
         }
         if (rangeSkill2.Contains(Event.current.mousePosition))
         {
             GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
             GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
                 "SKILL NAME : " + PlayerSkills[1].skillname + "\n" +
-                "SKILL DESCRIPTION : " + PlayerSkills[1].Description + "\n");
+                "SKILL DESCRIPTION : " + PlayerSkills[1].Description + "\n" +
+                "SKILL COOLDOWN : " + PlayerSkills[1].cooldown + "\n");
         }
         if (rangeSkill3.Contains(Event.current.mousePosition))
         {
             GUI.DrawTexture(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 80, 200, 100), barsBackgroundTexture);
             GUI.Label(new Rect(Input.mousePosition.x + 20, Screen.height - Input.mousePosition.y - 70, 200, 200),
                 "SKILL NAME : " + PlayerSkills[2].skillname + "\n" +
-                "SKILL DESCRIPTION : " + PlayerSkills[2].Description + "\n");
+                "SKILL DESCRIPTION : " + PlayerSkills[2].Description + "\n" + 
+                "SKILL COOLDOWN : " + PlayerSkills[2].cooldown + "\n");
         }
     }
 
