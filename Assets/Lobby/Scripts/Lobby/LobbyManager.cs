@@ -43,7 +43,7 @@ namespace Prototype.NetworkLobby
 
         //Client numPlayers from NetworkManager is always 0, so we count (throught connect/destroy in LobbyPlayer) the number
         //of players, so that even client know how many player there is.
-        [SerializeField]
+        [HideInInspector]
         public int _playerNumber = 0;
 
         //used to disconnect a client properly when exiting the matchmaker
@@ -62,8 +62,9 @@ namespace Prototype.NetworkLobby
         [Header("Game Manager Properties")]
         public GameState gameState;
 
-        // Using this property to uniquely identify all clients...
-        public int clientConnectionCount = 0;
+        //Keeps tracks of how many players have connected/joined a lobby
+        //it is also used for uniquely identifying the players in the active scene
+        public int currentPlayerID = 0;
 
         // Tracks how many players are alive in the online scene
         public int playersAlive;
@@ -75,7 +76,7 @@ namespace Prototype.NetworkLobby
 
         public List<PlayerInfoStruct> playerInfoList = new List<PlayerInfoStruct>();
 
-        public struct PlayerInfoStruct
+        public class PlayerInfoStruct
         {
             public string playerID;
             public string playerState;
@@ -95,19 +96,10 @@ namespace Prototype.NetworkLobby
 
             SetServerInfo("Offline", "None");
 
-            InitGameManager();
+            InitializeGameManagerProperties();
         }
 
-        void InitGameManager()
-        {
-            gameState = GameState.INACTIVE;
-            playersAlive = 0;
-
-            if (maximumEnemyLimit <= 0) { maximumEnemyLimit = 5; }
-            remainingEnemies = maximumEnemyLimit;
-        }
-
-        void ResetGameManager()
+        void InitializeGameManagerProperties()
         {
             gameState = GameState.INACTIVE;
             playersAlive = 0;
@@ -244,7 +236,7 @@ namespace Prototype.NetworkLobby
 
             // Once a match is completed or host has decided to exit,
             // set our gamestate back to INACTIVE
-            ResetGameManager();
+            InitializeGameManagerProperties();
 
             ChangeTo(mainMenuPanel);
         }
@@ -263,11 +255,10 @@ namespace Prototype.NetworkLobby
 
         public void StopServerClbk()
         {
+            StopServer();
             // Once a match is completed or host has decided to exit,
             // set our gamestate back to INACTIVE
-            ResetGameManager();
-
-            StopServer();
+            InitializeGameManagerProperties();
             ChangeTo(mainMenuPanel);
         }
 
@@ -338,11 +329,13 @@ namespace Prototype.NetworkLobby
             LobbyPlayer newPlayer = obj.GetComponent<LobbyPlayer>();
             newPlayer.ToggleJoinButton(numPlayers + 1 >= minPlayers);
 
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(1);
+            OnPlayersNumberModified(1);
 
-            LobbyManager.s_Singleton.clientConnectionCount += 1;
-            obj.GetComponent<LobbyPlayer>().lobbyPlayerID = LobbyManager.s_Singleton.clientConnectionCount.ToString();
-            //if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.playerInfoList.Add(new LobbyManager.PlayerInfoStruct { playerID = lobbyPlayerID, playerState = "ALIVE" });
+            // Anytime a player joins the lobby, we want to increase the client connection count
+            // always by 1. We use this variable to assign a unique ID to the lobby player/player.
+            currentPlayerID += 1;
+            obj.GetComponent<LobbyPlayer>().lobbyPlayerID = currentPlayerID.ToString();
+            playerInfoList.Add(new PlayerInfoStruct { playerID = currentPlayerID.ToString(), playerState = "ALIVE" });
 
             for (int i = 0; i < lobbySlots.Length; ++i)
             {
@@ -392,6 +385,10 @@ namespace Prototype.NetworkLobby
             //just subclass "LobbyHook" and add it to the lobby object.
             var lobbyPlayerId = lobbyPlayer.GetComponent<NetworkIdentity>().netId.ToString();
             var gamePlayerId = lobbyPlayer.GetComponent<NetworkIdentity>().netId.ToString();
+
+            //We assign the lobbyPlayerID to the playerID of the gameObject
+            //This is so we can track the player from in the manager and the game
+            gamePlayer.GetComponent<PlayerController>().myPlayerID = lobbyPlayer.GetComponent<LobbyPlayer>().lobbyPlayerID;
 
             Debug.Log("LobbyManager. OnLobbyServerSceneLoadedForPlayer. netId lobbyPlayer: " + lobbyPlayerId + " and netId gamePlayer: " + gamePlayerId);
 
@@ -533,11 +530,10 @@ namespace Prototype.NetworkLobby
             for (int i = 0; i < playerInfoList.Count; i++)
             {
                 var playerInfo = playerInfoList[i];
-
                 if (playerID == playerInfo.playerID)
                 {
                     // Found the playerID... reflect their state in the list
-                    playerInfo.playerState = newState;
+                    playerInfoList[i].playerState = newState;
                     break;
                 }
             }
@@ -567,6 +563,13 @@ namespace Prototype.NetworkLobby
 
         public void DecreasePlayerAlive(string playerID, int count)
         {
+            playersAlive += count;
+            if (playersAlive <= 0)
+            {
+                playersAlive = 0;
+            }
+
+            // TEST
             PlayerInfoStruct playerInfo = GetPlayerInfoStruct(playerID);
             if (!string.IsNullOrEmpty(playerInfo.playerID))
             {
@@ -574,15 +577,9 @@ namespace Prototype.NetworkLobby
 
                 if (playerInfo.playerState != "DEAD")
                 {
-                    playersAlive += count;
-                    if (playersAlive <= 0)
-                    {
-                        playersAlive = 0;
-                    }
                 }
                 else
                 {
-                    Debug.Log("LobbyManager. DecreasePlayerAlive. Player id <" + playerID + "> is already <" + playerInfo.playerState + ">");
                 }
             }
             else

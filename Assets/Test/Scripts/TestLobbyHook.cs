@@ -12,7 +12,7 @@ public class TestLobbyHook : LobbyHook
 
         Debug.Log("TestLobbyHook. OnLobbyServerSceneLoadedForPlayer. PlayerController id: " + lobbyPlayer.GetComponent<NetworkIdentity>().playerControllerId);
 
-        gamePlayer.GetComponent<PlayerController>().myPlayerID = LobbyManager.s_Singleton.clientConnectionCount.ToString();
+        //gamePlayer.GetComponent<PlayerController>().myPlayerID = LobbyManager.s_Singleton.currentPlayerID.ToString();
 
         //base.OnLobbyServerSceneLoadedForPlayer(manager, lobbyPlayer, gamePlayer);
     }
