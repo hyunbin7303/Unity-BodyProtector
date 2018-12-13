@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public List<Account> accounts;
     public int playersConnected;
     public int playersAlive;
-    public int maximumEnemyLimit;
+    //public int maximumEnemyLimit;
     public int remainingEnemies;
     public bool enableEnemySpawning;
 
@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
             //playScript.accounts = new List<Account>();
 
             enableEnemySpawning = false;
-            if (maximumEnemyLimit <= 0) { maximumEnemyLimit = 5; }
-            remainingEnemies = maximumEnemyLimit;
+            //if (maximumEnemyLimit <= 0) { maximumEnemyLimit = 5; }
+            //remainingEnemies = maximumEnemyLimit;
         }
         else if (instance != this)
         {
@@ -78,21 +78,21 @@ public class GameManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        if (IsGameStart)
-        {
-            if (instance.playersAlive <= 0 && instance.currentLevel != GameLevel.ENDSCREEN)
-            {
-                instance.currentLevel = GameLevel.ENDSCREEN;
-                NetworkManager.singleton.ServerChangeScene("EndScene");
-            }
+        //if (IsGameStart)
+        //{
+        //    if (instance.playersAlive <= 0 && instance.currentLevel != GameLevel.ENDSCREEN)
+        //    {
+        //        instance.currentLevel = GameLevel.ENDSCREEN;
+        //        NetworkManager.singleton.ServerChangeScene("EndScene");
+        //    }
 
-            if (instance.IsAllPlayerDone && instance.currentLevel != GameLevel.ENDSCREEN)
-            {
-                instance.IsAllPlayerDone = false;
-                instance.currentLevel = GameLevel.ENDSCREEN;
-                //NetworkManager.singleton.ServerChangeScene("EndScene");
-            }
-        }
+        //    if (instance.IsAllPlayerDone && instance.currentLevel != GameLevel.ENDSCREEN)
+        //    {
+        //        instance.IsAllPlayerDone = false;
+        //        instance.currentLevel = GameLevel.ENDSCREEN;
+        //        //NetworkManager.singleton.ServerChangeScene("EndScene");
+        //    }
+        //}
     }
 
 }

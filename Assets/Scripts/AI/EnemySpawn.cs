@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Prototype.NetworkLobby;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -29,7 +30,8 @@ public class EnemySpawn : NetworkBehaviour
     void Start()
     {
         _enableSpawning = true;
-        maxEnemyLimit = GameManager.instance.maximumEnemyLimit;
+        maxEnemyLimit = LobbyManager.s_Singleton.maxEnemyLimit;
+        //maxEnemyLimit = GameManager.instance.maximumEnemyLimit;
         //InvokeRepeating("SpawnEnemy", spawnTime, spawnTime);
     }
 

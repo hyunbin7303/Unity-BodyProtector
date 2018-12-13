@@ -70,7 +70,7 @@ namespace Prototype.NetworkLobby
         public int playersAlive;
 
         // How many enemies may spawn in the online scene
-        public int maximumEnemyLimit;
+        public int maxEnemyLimit;
         // The remaining number of enemies in the scene
         public int remainingEnemies;
 
@@ -104,8 +104,8 @@ namespace Prototype.NetworkLobby
             gameState = GameState.INACTIVE;
             playersAlive = 0;
 
-            if (maximumEnemyLimit <= 0) { maximumEnemyLimit = 5; }
-            remainingEnemies = maximumEnemyLimit;
+            if (maxEnemyLimit <= 0) { maxEnemyLimit = 5; }
+            remainingEnemies = maxEnemyLimit;
         }
 
         public override void OnLobbyClientSceneChanged(NetworkConnection conn)
