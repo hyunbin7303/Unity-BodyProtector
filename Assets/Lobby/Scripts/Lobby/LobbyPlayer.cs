@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Prototype.NetworkLobby
 {
@@ -23,6 +24,8 @@ namespace Prototype.NetworkLobby
 
         public GameObject localIcone;
         public GameObject remoteIcone;
+
+        public string lobbyPlayerID = "0";
 
         //OnMyName function will be invoked on clients when server change the value of playerName
         [SyncVar(hook = "OnMyName")]
@@ -44,9 +47,8 @@ namespace Prototype.NetworkLobby
 
         public override void OnClientEnterLobby()
         {
+            //Debug.Log("LobbyPlayer. OnClientEnterLobby. A client has entered the lobby...");
             base.OnClientEnterLobby();
-
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(1);
 
             LobbyPlayerList._instance.AddPlayer(this);
             LobbyPlayerList._instance.DisplayDirectServerWarning(isServer && LobbyManager.s_Singleton.matchMaker == null);
@@ -294,21 +296,30 @@ namespace Prototype.NetworkLobby
         //Cleanup thing when get destroy (which happen when client kick or disconnect)
         public void OnDestroy()
         {
-            LobbyPlayerList._instance.RemovePlayer(this);
-            if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(-1);
-
-            int idx = System.Array.IndexOf(Colors, playerColor);
-
-            if (idx < 0)
-                return;
-
-            for (int i = 0; i < _colorInUse.Count; ++i)
+            try
             {
-                if (_colorInUse[i] == idx)
-                {//that color is already in use
-                    _colorInUse.RemoveAt(i);
-                    break;
+                LobbyPlayerList._instance.RemovePlayer(this);
+
+                if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.DecreasePlayerAlive(lobbyPlayerID.ToString(), -1);
+                if (LobbyManager.s_Singleton != null) LobbyManager.s_Singleton.OnPlayersNumberModified(-1);
+
+                int idx = System.Array.IndexOf(Colors, playerColor);
+
+                if (idx < 0)
+                    return;
+
+                for (int i = 0; i < _colorInUse.Count; ++i)
+                {
+                    if (_colorInUse[i] == idx)
+                    {//that color is already in use
+                        _colorInUse.RemoveAt(i);
+                        break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("LobbyPlaeyr. OnDestroy. " + ex.Message);
             }
         }
     }

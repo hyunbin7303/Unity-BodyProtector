@@ -46,6 +46,8 @@ namespace Prototype.NetworkLobby
 
         public void OnClickDedicated()
         {
+            // A dedicated Server was created, set the GameManager state to DEDICATED_SERVER
+            lobbyManager.gameState = GameState.DEDICATED_SERVER;
             lobbyManager.ChangeTo(null);
             lobbyManager.StartServer();
 
