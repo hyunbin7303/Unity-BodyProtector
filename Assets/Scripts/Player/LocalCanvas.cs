@@ -14,29 +14,29 @@ public class LocalCanvas : NetworkBehaviour
 {
     void Start()
     {
-        if (isLocalPlayer)
+        // First, if there are multiple canvas' within the player object...
+        // then we must find the one with the "HUD" tag
+        List<int> arrayIndexes = new List<int>();
+        Canvas hudCanvas = null;
+        var canvasComponents = GetComponentsInChildren<Canvas>();
+        for (int i = 0; i < canvasComponents.Length; i++)
         {
-            // First, if there are multiple canvas' within the player object...
-            // then we must find the one with the "HUD" tag
-            List<int> arrayIndexes = new List<int>();
-            Canvas hudCanvas = null;
-            var canvasComponents = GetComponentsInChildren<Canvas>();
-            for (int i = 0; i < canvasComponents.Length; i++)
+            if (canvasComponents[i].CompareTag("HUD"))
             {
-                if (canvasComponents[i].CompareTag("HUD"))
-                {
-                    // Remember the array index so that we can directly modify
-                    // the canvas that has the "HUD" tag
-                    arrayIndexes.Add(i);
-                    hudCanvas = canvasComponents[i];
-                }
+                // Remember the array index so that we can directly modify
+                // the canvas that has the "HUD" tag
+                arrayIndexes.Add(i);
+                hudCanvas = canvasComponents[i];
             }
+        }
 
-            foreach (int arrayIndex in arrayIndexes)
+        foreach (int arrayIndex in arrayIndexes)
+        {
+            // By default, disable the HUD Canvas if the developer forgets to disable in the Unity editor
+            GetComponentsInChildren<Canvas>()[arrayIndex].enabled = false;
+
+            if (isLocalPlayer)
             {
-                // By default, disable the HUD Canvas if the developer forgets to disable in the Unity editor
-                GetComponentsInChildren<Canvas>()[arrayIndex].enabled = false;
-
                 DevLog.Log("LocalCanvas", "Enable UI for LocalPlayer netId: " + GetComponent<NetworkIdentity>().netId);
                 // Enable the HUD UI canvas for our local player instance. This will ensure
                 // that other player UIs will never overlap with the host or other clients...
