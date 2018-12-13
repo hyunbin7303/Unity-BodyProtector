@@ -1,95 +1,97 @@
-﻿using System;
-using UnityEngine;
+﻿//using System;
+//using UnityEngine;
 
-/// <summary>
-/// Credit: 
-/// </summary>
-[Serializable]
-public class CanvasControl
-{
-    [SerializeField]
-    public Canvas prefab;
-    Canvas m_Canvas;
+///// <summary>
+///// Credit: 
+///// </summary>
+//[Serializable]
+//public class CanvasControl
+//{
+//    [SerializeField]
+//    public Canvas prefab;
+//    Canvas m_Canvas;
 
-    public Canvas canvas { get { return m_Canvas; } }
+//    public Canvas canvas { get { return m_Canvas; } }
+//\
 
-    /// <summary>
-    /// Creates an instance of the UI canvas to display.
-    /// </summary>
-    public virtual void Show()
-    {
-        if (prefab == null)
-        {
-            Debug.LogError("[CanvasControl.cs]: Canvas prefab '" + prefab.gameObject.name + "' is null");
-            return;
-        }
 
-        if (m_Canvas != null)
-            return;
+//    /// <summary>
+//    /// Creates an instance of the UI canvas to display.
+//    /// </summary>
+//    public virtual void Show()
+//    {
+//        if (prefab == null)
+//        {
+//            Debug.LogError("[CanvasControl.cs]: Canvas prefab '" + prefab.gameObject.name + "' is null");
+//            return;
+//        }
 
-        m_Canvas = (Canvas)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        //GameObject.DontDestroyOnLoad(m_Canvas.gameObject);
-    }
+//        if (m_Canvas != null)
+//            return;
 
-    /// <summary>
-    /// Hides the UI canvas from view.
-    /// </summary>
-    public void Hide()
-    {
-        if (m_Canvas == null)
-            return;
+//        m_Canvas = (Canvas)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+//        //GameObject.DontDestroyOnLoad(m_Canvas.gameObject);
+//    }
 
-        GameObject.Destroy(m_Canvas.gameObject);
-        m_Canvas = null;
-    }
+//    /// <summary>
+//    /// Hides the UI canvas from view.
+//    /// </summary>
+//    public void Hide()
+//    {
+//        if (m_Canvas == null)
+//            return;
 
-    public virtual void OnLevelWasLoaded()
-    {
-    }
-}
+//        GameObject.Destroy(m_Canvas.gameObject);
+//        m_Canvas = null;
+//    }
 
-[Serializable]
-public class ScoreCanvasControl : CanvasControl
-{
-    public void Show(string status)
-    {
-        base.Show();
+//    public virtual void OnLevelWasLoaded()
+//    {
+//    }
+//}
 
-        //GuiLobbyManager.s_Singleton.offlineCanvas.Hide();
+//[Serializable]
+//public class ScoreCanvasControl : CanvasControl
+//{
+//    public void Show(string status)
+//    {
+//        base.Show();
 
-        // The ScoreCanvasHook is a hook that allows for cust
-        var hooks = canvas.GetComponent<ScoreCanvasHooks>();
-        if (hooks == null)
-            return;
+//        //GuiLobbyManager.s_Singleton.offlineCanvas.Hide();
 
-        hooks.SetCount(0);
+//        // The ScoreCanvasHook is a hook that allows for cust
+//        var hooks = canvas.GetComponent<ScoreCanvasHooks>();
+//        if (hooks == null)
+//            return;
 
-        //
+//        hooks.SetCount(0);
 
-        //hooks.OnStopHook = OnGUIStop;
+//        //
 
-        //hooks.SetAddress(GuiLobbyManager.s_Singleton.networkAddress);
-        //hooks.SetStatus(status);
+//        //hooks.OnStopHook = OnGUIStop;
 
-        //GuiLobbyManager.s_Singleton.onlineStatus = status;
+//        //hooks.SetAddress(GuiLobbyManager.s_Singleton.networkAddress);
+//        //hooks.SetStatus(status);
 
-        //EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
-        //EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
-    }
+//        //GuiLobbyManager.s_Singleton.onlineStatus = status;
 
-    public void OnServerStop()
-    {
-        // The ScoreCanvasHook is a hook that allows for cust
-        var hooks = canvas.GetComponent<ScoreCanvasHooks>();
-        if (hooks == null)
-            return;
+//        //EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
+//        //EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
+//    }
 
-        hooks.SetCount(0);
-        Hide();
-    }
+//    public void OnServerStop()
+//    {
+//        // The ScoreCanvasHook is a hook that allows for cust
+//        var hooks = canvas.GetComponent<ScoreCanvasHooks>();
+//        if (hooks == null)
+//            return;
 
-    public void AllPlayersDied()
-    {
-        Hide();
-    }
-}
+//        hooks.SetCount(0);
+//        Hide();
+//    }
+
+//    public void AllPlayersDied()
+//    {
+//        Hide();
+//    }
+//}

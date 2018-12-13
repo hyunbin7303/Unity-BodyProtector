@@ -55,7 +55,7 @@ MonoBehaviour:
   currentEnemyCount: 0
   maxEnemyLimit: 5
   enemy: {fileID: 1491045040034600, guid: 6524f8aa64297374082eb9b20bd22bca, type: 2}
-  spawnTime: 7
+  spawnTime: 2
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}

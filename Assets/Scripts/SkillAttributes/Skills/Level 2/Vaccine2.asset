@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4455da0fc63e05478988d8df4fd20ba, type: 3}
   m_Name: Vaccine2
   m_EditorClassIdentifier: 
-  ID: 0
-  skillname: 
-  Description: 
-  cooldown: 0
+  ID: 23
+  skillname: Vaccine2
+  Description: Vaccine Strong one.
+  cooldown: 5
   mana: 0
   icon: {fileID: 0}
   LevelNeeded: 0

@@ -12,17 +12,20 @@ public class Health : NetworkBehaviour
     [SyncVar(hook = "OnChangeHealth")]
     public float currentHealth = maxHealth;
     public const float maxHealth = 100f;
-
     public RectTransform healthBar;
     public Slider hudHealthBar;
     public TMP_Text healthText;
 
+
+
+
     /// The Player's stat includes the name, health, etc.
     private PlayerController thePlayer;
-
+    private GameObject spikeTrap;
 
     void Start()
     {
+        spikeTrap = GameObject.FindGameObjectWithTag("Trap");
         thePlayer = GetComponent<PlayerController>();
         if (isLocalPlayer)
         {
@@ -69,6 +72,7 @@ public class Health : NetworkBehaviour
         if (!isServer) {
             return;
         }
+        // if player enter area && spikeTrap
 
         //only take damage when the player is ALIVE
         if (thePlayer.status == CharacterStatus.ALIVE) {
@@ -102,6 +106,27 @@ public class Health : NetworkBehaviour
             // apply changes to the health HUD
             hudHealthBar.value = health / maxHealth;
             healthText.text = health.ToString("F0");
+        }
+    }
+    public void ApplySpikeDamage(GameObject SpikeTrap)
+    {
+        bool isIn = SpikeTrap.GetComponent<SpikeTrapDemo>().spikeTrapAnim.GetBool("close");
+        if (isIn)
+        {
+            //only take damage when the player is ALIVE
+            if (thePlayer.status == CharacterStatus.ALIVE)
+            {
+                currentHealth -= SpikeTrap.GetComponent<SpikeTrapDemo>().AttackDamage;
+            }
+            if (currentHealth <= 0)
+            {
+                if (thePlayer.status == CharacterStatus.ALIVE)
+                {
+                    RpcOnPlayerHealthZero();
+                    OnPlayerHealthZero();
+                    currentHealth = 0;
+                }
+            }
         }
     }
 

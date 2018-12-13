@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Antibiotic2
   m_EditorClassIdentifier: 
   ID: 22
-  skillname: Antibiotic
+  skillname: Antibiotic2
   Description: Antibiotic is used. Incrase 20 mana.
   cooldown: 5
   mana: 5
