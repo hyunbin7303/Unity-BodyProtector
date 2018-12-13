@@ -1,29 +1,42 @@
-﻿using System.Collections;
+﻿using Prototype.NetworkLobby;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameResultManager : MonoBehaviour {
+public class GameResultManager : MonoBehaviour
+{
+    public Button backToLobbyButton;
 
-    private void Update()
+
+
+    void OnEnable()
     {
-        if(GameObject.FindGameObjectWithTag("Player"))
+        if (LobbyManager.s_Singleton != null)
         {
-            GameObject destroyplayer = GameObject.FindGameObjectWithTag("Player");
-            Destroy(destroyplayer);
+            backToLobbyButton.onClick.AddListener(LobbyManager.s_Singleton.GoBackButton);
         }
     }
 
-
-    public void RePlaygame()
+    void OnDisable()
     {
-        Debug.Log("REPLAY GAME");
+        backToLobbyButton.onClick.RemoveAllListeners();
+    }
+
+    void Update()
+    {
+        //if (GameObject.FindGameObjectWithTag("Player"))
+        //{
+        //    GameObject destroyplayer = GameObject.FindGameObjectWithTag("Player");
+        //    Destroy(destroyplayer);
+        //}
     }
 
     public void ExitGame()
     {
 #if UNITY_EDITOR
-        Debug.Log("EXIT GAME PRESSED");
-
+        Debug.Log("GameResultManager. ExitGame. EXIT GAME PRESSED");
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
