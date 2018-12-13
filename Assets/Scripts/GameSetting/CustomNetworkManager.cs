@@ -17,33 +17,33 @@ public class CustomNetworkManager : NetworkManager
 
     public override void OnServerConnect(NetworkConnection conn)
     {
-        GameManager.instance.IsGameStart = true;
-        GameManager.instance.connectedClientIDs.Add(conn.connectionId);
-        GameManager.instance.playersAlive += 1;
-        GameManager.instance.playersConnected += 1;
+        //GameManager.instance.IsGameStart = true;
+        //GameManager.instance.connectedClientIDs.Add(conn.connectionId);
+        //GameManager.instance.playersAlive += 1;
+        //GameManager.instance.playersConnected += 1;
 
-        GetAccountInfo(conn.connectionId);
+        //GetAccountInfo(conn.connectionId);
 
-        Debug.Log("[OnServerConnect] connection id " + conn.connectionId);
-        base.OnServerConnect(conn);
+        //Debug.Log("[OnServerConnect] connection id " + conn.connectionId);
+        //base.OnServerConnect(conn);
     }
 
     public override void OnStopServer()
     {
-        GameManager.instance.IsGameStart = false;
+        //GameManager.instance.IsGameStart = false;
         Debug.Log("[NetworkManager]: Server is stopping. Host has stopped.");
 
         try
         {
-            GameManager.instance.connectedClientIDs.Clear();
-            GameManager.instance.accounts.Clear();
-            GameManager.instance.playersAlive = 0;
-            if (GameManager.instance.playersConnected > 0)
-            {
-                // We know that once server stops, no more players are connected to it,
-                // even the host will not be connected
-                GameManager.instance.playersConnected = 0;
-            }
+            //GameManager.instance.connectedClientIDs.Clear();
+            //GameManager.instance.accounts.Clear();
+            //GameManager.instance.playersAlive = 0;
+            //if (GameManager.instance.playersConnected > 0)
+            //{
+            //    // We know that once server stops, no more players are connected to it,
+            //    // even the host will not be connected
+            //    GameManager.instance.playersConnected = 0;
+            //}
         }
         catch (Exception ex)
         {
@@ -56,15 +56,15 @@ public class CustomNetworkManager : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        GameManager.instance.connectedClientIDs.Remove(conn.connectionId);
-        GameManager.instance.playersAlive -= 1;
-        GameManager.instance.playersConnected -= 1;
-        Debug.Log("[GameManager] amount of players left is " + GameManager.instance.playersConnected);
+        //GameManager.instance.connectedClientIDs.Remove(conn.connectionId);
+        //GameManager.instance.playersAlive -= 1;
+        //GameManager.instance.playersConnected -= 1;
+        //Debug.Log("[GameManager] amount of players left is " + GameManager.instance.playersConnected);
 
-        RemoveAccountFromList(conn.connectionId);
+        //RemoveAccountFromList(conn.connectionId);
 
-        base.OnServerDisconnect(conn);
-        Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " has disconnected from the server.");
+        //base.OnServerDisconnect(conn);
+        //Debug.Log("[NetworkManager]: Connection " + conn.connectionId + " has disconnected from the server.");
     }
 
     //public override void OnClientConnect(NetworkConnection conn)
@@ -134,18 +134,18 @@ public class CustomNetworkManager : NetworkManager
         }
 
         // Add to the list of accounts...
-        GameManager.instance.accounts.Add(newPlayer);
+        //GameManager.instance.accounts.Add(newPlayer);
     }
 
     public void RemoveAccountFromList(int connectionID)
     {
-        int accountID = connectionID + 1;
+        //int accountID = connectionID + 1;
 
-        Account foundAccount = GameManager.instance.accounts.Find(x => x.AccountID == accountID);
-        if (foundAccount != null)
-        {
-            GameManager.instance.accounts.Remove(foundAccount);
-        }
+        //Account foundAccount = GameManager.instance.accounts.Find(x => x.AccountID == accountID);
+        //if (foundAccount != null)
+        //{
+        //    GameManager.instance.accounts.Remove(foundAccount);
+        //}
     }
 
 
