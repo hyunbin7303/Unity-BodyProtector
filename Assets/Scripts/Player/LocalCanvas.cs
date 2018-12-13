@@ -17,7 +17,6 @@ public class LocalCanvas : NetworkBehaviour
         // First, if there are multiple canvas' within the player object...
         // then we must find the one with the "HUD" tag
         List<int> arrayIndexes = new List<int>();
-        Canvas hudCanvas = null;
         var canvasComponents = GetComponentsInChildren<Canvas>();
         for (int i = 0; i < canvasComponents.Length; i++)
         {
@@ -26,7 +25,7 @@ public class LocalCanvas : NetworkBehaviour
                 // Remember the array index so that we can directly modify
                 // the canvas that has the "HUD" tag
                 arrayIndexes.Add(i);
-                hudCanvas = canvasComponents[i];
+                //hudCanvas = canvasComponents[i];
             }
         }
 
