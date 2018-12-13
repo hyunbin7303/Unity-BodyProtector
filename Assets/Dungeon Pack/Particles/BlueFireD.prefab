@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198703374472999380}
   - component: {fileID: 199177102943001428}
   m_Layer: 0
-  m_Name: FireD
+  m_Name: BlueFireD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4590,7 +4590,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2ef39c184abf89848ba6b8a836f919fc, type: 2}
+  - {fileID: 2100000, guid: d7b4b29eb7328444db6c6f3795bcfd9f, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
